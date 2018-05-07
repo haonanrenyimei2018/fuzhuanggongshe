@@ -380,7 +380,9 @@
 			},
 			"release/list_1.html": {
 				"resources": [
-					"release.html"
+					"release.html",
+					"css/iconfont.css",
+					"css/mui.min.css"
 				],
 				"refer": [
 					"extension.html",
@@ -754,7 +756,6 @@
 				"layui/images/face/26.gif",
 				"layui/images/face/63.gif",
 				"js/mui.poppicker.js",
-				"css/iconfont.css",
 				"layui/images/face/45.gif",
 				"layui/images/face/30.gif",
 				"fonts/iconfont.ttf",
@@ -785,7 +786,6 @@
 				"images/bg.jpg",
 				"layui/images/face/70.gif",
 				"layui/images/face/54.gif",
-				"css/mui.min.css",
 				"layui/images/face/33.gif",
 				"layui/lay/modules/carousel.js",
 				"layer/mobile/layer.js",

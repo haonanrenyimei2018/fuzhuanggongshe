@@ -16,7 +16,7 @@
 <body>
 <header class="mui-bar mui-bar-nav">
     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="../index.html"></a>
-    <h1 class="mui-title">拉腰拉条司马克放活发布</h1>
+    <h1 class="mui-title">锁眼钉扣打结放活发布</h1>
 </header>
 <div class="mui-content">
     <form class="mui-input-group" id="addForm" style=" background:none;">
@@ -46,7 +46,7 @@
                 <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
             <div class="mui-input-row">
                 <label >加工费单价</label>
-                <input type="text" class="mui-input-clear" placeholder="加工费单价" name="param[price]" data-input-clear="5">
+                <input type="number" class="mui-input-clear" placeholder="加工费单价" name="param[price]" data-input-clear="5">
             </div>
             <div class="mui-input-row">
                 <label>最终交期</label>
@@ -62,18 +62,17 @@
             </div>
             <div class="mui-input-row">
                 <label>联系人</label>
-                <input type="text" class="mui-input-clear" placeholder="联系人" name="link" data-input-clear="5">
+                <input type="text" class="mui-input-clear" placeholder="联系人" name="link" id="link" data-input-clear="5">
                 <span class="mui-icon mui-icon-clear mui-hidden"></span>
             </div>
             <div class="mui-input-row">
                 <label>电话</label>
-                <input type="text" class="mui-input-clear" placeholder="电话" name="phone" data-input-clear="5">
+                <input type="number" class="mui-input-clear" placeholder="电话" name="phone" id="phone" data-input-clear="5">
                 <span class="mui-icon mui-icon-clear mui-hidden"></span>
             </div>
             <div class="mui-button-row">
 				<button type="button" class="mui-btn mui-btn-danger" onclick="javascript:history.go(-1);" style="width:auto; ">返回</button>&nbsp;&nbsp;
 	            <button type="button" data-loading-text="发布中" onclick="addEvent()" class="mui-btn mui-btn-primary" style="width:auto;">发布</button>
-
             </div>
         </div>
         <input type="hidden" name="images" id="images">
@@ -82,10 +81,10 @@
         <input type="hidden" name="type" value="1">
         <input type="hidden" name="user" id="user" value="">
         <input type="hidden" name="target[province]" />
-      <input type="hidden" name="target[city]" />
-      <input type="hidden" name="target[county]" />
-      <input type="hidden" name="id" id="id" />
-      <input type="hidden" name="version" id="version" />
+        <input type="hidden" name="target[city]" />
+        <input type="hidden" name="target[county]" />
+        <input type="hidden" name="id" id="id" />
+        <input type="hidden" name="version" id="version" />
     </form>
 </div>
 <nav class="mui-bar mui-bar-tab">
@@ -108,13 +107,11 @@
 <script src="../js/mui.poppicker.js"></script>
 <script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
-<script src="../js/public.js"></script>
 <script src="../layui/layui.js"></script>
 <script src="../js/config.js"></script>
 <script src="../js/otcms.js"></script>
 <script src="../js/common.js"></script>
 <script>
-	var images_arr = [];
     (function($, doc) {
         $.init();
         $.ready(function() {

@@ -9,6 +9,10 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link href="../css/mui.picker.css" rel="stylesheet"/>
     <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../plugin/smartphoto/css/htmleaf-demo.css" />
+	<link rel="stylesheet" type="text/css" href="../plugin/smartphoto/css/htmleaf-demo.css">
+	<link rel="stylesheet" href="../plugin/smartphoto/css/smartphoto.css" />
+	<link rel="stylesheet" href="../plugin/smartphoto/css/style2.css" />
     <script type="text/javascript" charset="utf-8">
       	mui.init();
     </script>
@@ -68,11 +72,8 @@
     <script src="../layui/layui.js"></script>
 	<script src="../js/config.js"></script>
     <script src="../js/otcms.js"></script>
+    <script src="../plugin/smartphoto/js/jquery-smartphoto.min.js?v=1"></script>
     <script>
-    	/*
-    	 <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes">
-    	 <img border="0" src="http://wpa.qq.com/pa?p=2::52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-    	 * */
     	var phone = '';
     	$(function () {
             var user_id = window.localStorage.getItem('user_id');
@@ -87,6 +88,7 @@
 			$('#id').val(operation['id']);
 			$('.mui-title').html(modelData[operation['model']]['title']);
 			show();
+//			
     	});
     	function show() {
     		var param = {
@@ -97,15 +99,16 @@
     		$.post(host + '/work/show.html',param,function(res){
     			var data = res.data;
     			var html = res.html;
-    			if(data.thumb_images != ''){
-    				var img_arr = data.thumb_images.split('|');
-    			}else {
-    				var img_arr = data.images.split('|');
-    			}
-    			
+    			var images_arr = data.images.split('|');
+    			var thumb_images_arr = data.thumb_images.split('|');
+//  			if(data.thumb_images != ''){
+//  				var img_arr = data.thumb_images.split('|');
+//  			}else {
+//  				var img_arr = data.images.split('|');
+//  			}
     			var msg = '';
-    			for(var i=0;i<img_arr.length;++i){
-    				msg += '<img src="'+img_arr[i]+'" width="60%" height="200px" style="margin-top:2px;display:block;" >';
+    			for(var i=0;i<thumb_images_arr.length;++i){
+    				msg += '<a href="'+thumb_images_arr[i]+'" class="js-smartPhoto" style="width:200px;height:300px;display:block;"><img src="'+thumb_images_arr[i]+'" width="100%" height="100%" style="margin-top:2px;display:block;" ></a>';
     			}
     			$('#imagesDiv').html(msg);
     			$('#title').html(checkPhone(data.title));
@@ -118,6 +121,7 @@
     			$('#callPhone').click(function (){
     				plus.device.dial(phone,true );
     			});
+    			$(".js-smartPhoto").smartPhoto();
     		},'JSON');
     	}
     	mui('body').on('tap','a',function(){

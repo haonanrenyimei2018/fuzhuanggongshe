@@ -1,7 +1,7 @@
 //请求接口的域名
 var host = 'http://fz.6me.cn/api';
 //上传的URL
-var upload_url = host + '/upload/upload';
+var upload_url = host + '/upload/index';
 var domain = 'http://fz.6me.cn/api/extension/index.html?pid=';
 //当前版本号
 var version_code = "1.1.5";

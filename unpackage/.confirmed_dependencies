@@ -91,7 +91,9 @@
 	},
 	"release/list_1.html": {
 		"resources": [
-			"release.html"
+			"release.html",
+			"css/iconfont.css",
+			"css/mui.min.css"
 		],
 		"refer": [
 			"release.html",
