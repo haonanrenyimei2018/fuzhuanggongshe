@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <script language="javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/mui.picker.css" rel="stylesheet"/>
+    <link href="css/mui.poppicker.css" rel="stylesheet"/>
+    <link href="css/iconfont.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+	$(function() {
+		var user_id = window.localStorage.getItem('user_id');
+		if(user_id == null){
+			window.location = 'login.html';
+			return false;
+		}
+		//搜索框显示隐藏
+		$('.mui-icon-search').click(function() {
+			if($('#mui-search').is(":hidden")) {
+				$('#mui-search').show();
+				$(this).hide();
+				$('.mui-icon-closeempty').show();
+			}
+		});
+		$('.mui-icon-closeempty').click(function() {
+			$('#mui-search').hide();
+				$(this).hide();
+				$('.mui-icon-search').show();
+		});
+		var gallery = mui('.mui-slider');
+		gallery.slider({
+			interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+		});
+	});
+	mui.init();
+    </script>
+    </head>
+    <body>
+	<header class="mui-bar mui-bar-nav"> <a class="mui-action-qy  mui-pull-left" id="showCityPicker3" href="javascript:void(0);"> 
+		<i class="iconfont icon-dizhi"></i> <span id="mui-city">全国</span> </a>
+      <h1 class="mui-title">服装公社</h1>
+      <a class="mui-action-fx  mui-pull-right" id="showShare3" href="#sheet1"> 
+      	<i class="iconfont icon-fenxiang"></i> <span id="mui-share">分享</span>
+      </a> 
+	</header>
+		<div class="mui-content">
+		 <div class="mui-input-row mui-search" id="mui-search" >
+		    <input type="search" class="mui-input-clear" placeholder="搜索关键词">
+		  </div>
+      <ul class="mui-table-view mui-grid-view mui-grid-9 mui-home">
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=1"> 
+	    		<span class="iconfont icon-huanfu1"></span>
+	      		<div class="mui-media-body">品牌服装</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=2"> 
+		    	<span class="iconfont icon-coupon"></span>
+		      	<div class="mui-media-body">裁剪烫熨包装</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=3"> 
+	    		<span class="iconfont icon-fengren"></span>
+	      		<div class="mui-media-body">缝纫加工</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=4"> 
+	    		<span class="iconfont icon-yinhua"></span>
+	      		<div class="mui-media-body">印花烫绣水洗</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=5"> 
+	    		<span class="iconfont icon-mianliao2"></span>
+	      		<div class="mui-media-body">面料</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=6"> 
+	    		<span class="iconfont icon-fuliao"></span>
+	      		<div class="mui-media-body">辅料</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=7"> 
+	    		<span class="iconfont icon-zhuanghuanggaizhuangfuwu"></span>
+	      		<div class="mui-media-body">厂房设备</div>
+	     	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=8"> 
+	    		<span class="iconfont icon-icon-p_dangqiankucun"></span>
+	      		<div class="mui-media-body">库存服装</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=9"> 
+	    		<span class="iconfont icon-gendan"></span>
+	      		<div class="mui-media-body">求职招聘</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=10"> 
+	    		<span class="iconfont icon-yangpin"></span>
+	      		<div class="mui-media-body">样品样板技术</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=11"> 
+	    		<span class="iconfont icon-stretch"></span>
+	      		<div class="mui-media-body">拉腰拉条司马克</div>
+	      	</a> 
+	    </li>
+	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+	    	<a href="release.html?model=12"> 
+	    		<span class="iconfont icon-weibiaoti3"></span>
+	      		<div class="mui-media-body">锁眼钉扣打结</div>
+	      	</a> 
+	    </li>
+	  </ul>
+      <div class="mui-slider" style="margin: 10px auto;">
+		<div class="mui-slider-group">
+          <div class="mui-slider-item"><a href="#"><img width="98%" height="98%" src="images/banner.jpg" /></a></div>
+          <div class="mui-slider-item"><a href="#"><img width="98%" height="98%" src="images/banner1.jpg" /></a></div>
+        </div>
+	</div>
+    <div style="padding-top: 10px; background: #fff;">
+	    <div id="segmentedControl" class="mui-segmented-control">
+			<a class="mui-control-item mui-active" href="#item1"> 热门信息 </a>
+			<a class="mui-control-item" href="#item2"> 最新信息 </a>
+			<span id="member_count" style="color:#3ea1f6;padding-left: 10px;"></span>
+	    </div>
+    <div>
+    <div id="item1" class="mui-control-content mui-active">
+          <div id="scroll" class="mui-scroll-wrapper" data-scroll="1">
+        <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
+              <ul class="mui-table-view" id="items1">
+			  </ul>
+              <div style="text-align:center; padding: 15px 0;display: none;">
+            	<button type="button" class="mui-btn more" onclick="javascript:location.href='#'" >显示更多>></button>
+			  </div>
+		</div>
+  </div>
+  </div>
+      <div id="item2" class="mui-control-content">
+		<div class="mui-scroll">
+			  <ul class="mui-table-view" id="items2">
+			  </ul>
+			  <div style="text-align:center; padding: 15px 0; display: none;">
+			<button type="button" class="mui-btn more" onclick="javascript:location.href='#'" >显示更多>></button>
+		  </div>
+			</div>
+	  </div>
+  </div>
+</div>
+<input type="hidden" name="user" id="user">
+<nav class="mui-bar mui-bar-tab"> 
+	<a class="mui-tab-item mui-active" href="index.html"> 
+		<span class="mui-icon mui-icon-home"></span> 
+		<span class="mui-tab-label">首页</span> 
+	</a> 
+	<a class="mui-tab-item" href="extension.html"> 
+		<span class="mui-icon mui-icon-plusempty"></span> 
+		<span class="mui-tab-label" style="padding-top:25px;">我要推广</span> 
+	</a> 
+	<a class="mui-tab-item" href="user.html"> <span class="mui-icon mui-icon mui-icon-contact"></span> <span class="mui-tab-label">我的</span> </a> </nav>
+
+<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+    <!-- 可选择菜单 -->
+     <ul class="mui-table-view mui-grid-view mui-grid-9 mui-home" style="margin:0;">
+    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+    	<span onclick="shareEvent(1)"> 
+    		<span class="iconfont icon-huanfu1"></span>
+      		<div class="mui-media-body">微信好友</div>
+      	</span>
+    </li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+    	<span onclick="shareEvent(2)"> 
+    		<span class="iconfont icon-coupon"></span>
+      		<div class="mui-media-body">微信朋友圈</div>
+      </span> 
+    </li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+    	<span onclick="shareEvent(3)"> 
+    		<span class="iconfont icon-mianliao2"></span>
+      		<div class="mui-media-body">微信收藏</div>
+      	</span> 
+    </li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
+    	<span onclick="shareEvent(4)"> 
+    		<span class="iconfont icon-fuliao"></span>
+      		<div class="mui-media-body">QQ好友</div>
+      	</span> 
+    </li>
+    <!-- 取消菜单 -->
+    <ul class="mui-table-view">
+      <li class="mui-table-view-cell">
+        <a href="#sheet1"><b>取消</b></a>
+      </li>
+    </ul>
+</div>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script src="js/mui.picker.js"></script>
+<script src="js/mui.poppicker.js"></script> 
+<script src="js/city.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/config.js"></script>
+<script src="js/otcms.js"></script>
+<script>
+	(function($, doc) {
+		$.init();
+		$.ready(function() {
+			//-----------------------------------------
+			// 					级联示例
+	        //级联示例
+	        var cityPicker3 = new $.PopPicker({
+	            layer: 2
+	        });
+	        cityPicker3.setData(cityData3);
+	        var showCityPickerButton = doc.getElementById('mui-city');
+	
+	        showCityPickerButton.addEventListener('tap', function(event) {
+	            cityPicker3.show(function(items) {
+					var p_code = items[0].value;
+					var p_name = items[0].text;
+					var c_code = items[1].value;
+	                var c_name = items[1].text;
+					window.localStorage.setItem('province',p_code);
+					window.localStorage.setItem('province_name',p_name);
+					window.localStorage.setItem('city',c_code);
+					window.localStorage.setItem('city_name',c_name); 
+					doc.getElementById('mui-city').innerHTML = c_name;
+	            });
+	        }, false);
+		});
+	})(mui, document);
+	var addrdata;
+	var wxShare = null;
+	var qqShare = null;
+	mui.plusReady(function (){
+		upgrade();
+		//获取地理位置
+		plus.geolocation.getCurrentPosition(function(p){
+			addrdata = p.address;
+			eval('var user = ' + window.localStorage.getItem('user'));
+	        var c_name = window.localStorage.getItem('city_name');
+	        if(c_name != '' && c_name != null && c_name != 'undefined'){
+	        	$('#mui-city').html(c_name);
+	        }else if(user.city_name != '' && user.city_name != 'undefined'){
+	        	window.localStorage.setItem('province',user.province);
+				window.localStorage.setItem('province_name',user.province_name);
+				window.localStorage.setItem('city',user.city);
+				window.localStorage.setItem('city_name',user.city_name); 
+	        	$('#mui-city').html(user.city_name);
+	        }else {
+	        	window.localStorage.setItem('province','');
+				window.localStorage.setItem('province_name',p.address.province);
+				window.localStorage.setItem('city','');
+				window.localStorage.setItem('city_name',p.address.city);
+	        	$('#mui-city').html(p.address.city);
+	        }
+		}, function(e){
+			mui.toast(e.message);
+		});
+		//获取分享服务
+		plus.share.getServices( function(s){
+			shares = s;
+			for(var i in s){
+				if('weixin' == s[i].id){
+					wxShare = s[i];
+				}
+				if('qq' == s[i].id){
+					qqShare = s[i];
+				}
+			}
+		}, function(e){
+			alert( "获取分享服务列表失败："+e.message );
+		} );
+	});
+	/**
+	 * 分享
+	 */
+	function shareEvent(id) {
+		var user_id = $('#user_id').val();
+		var href =  domain + user_id;
+		switch (id){
+			case 1 :
+				var data = {
+					content : '1111111111111111111111111',
+					title : '分享链接',
+					href : href,
+					extra : {
+						scene : 'WXSceneSession'
+					}
+				};
+				wxShare.send(data,function (){
+					mui.toast('分享成功');
+				}, function(e){
+					alert( "分享失败："+e.message );
+				});
+				break;
+			case 2 :
+				var data = {
+					content : '1111111111111111111111111',
+					title : '分享链接',
+					href : href,
+					extra : {
+						scene : 'WXSceneTimeline'
+					}
+				};
+				wxShare.send(data,function (){
+					mui.toast('分享成功');
+				}, function(e){
+					mui.toast( "分享失败："+e.message );
+				});
+				break;
+			case 3 :
+				var data = {
+					content : '1111111111111111111111111',
+					title : '分享链接',
+					href : href,
+					extra : {
+						scene : 'WXSceneFavorite'
+					}
+				};
+				wxShare.send(data,function (){
+					mui.toast('分享成功');
+				}, function(e){
+					mui.toast( "分享失败："+e.message );
+				});
+				break;
+			case 4 :
+				var data = {
+					content : '1111111111111111111111111',
+					title : '分享链接',
+					href : href
+				};
+				qqShare.send(data,function (){
+					mui.toast('分享成功');
+				}, function(e){
+					mui.toast( "分享失败："+e.message );
+				});
+				break;
+		}
+	}
+	
+	$(document).ready(function () {
+        var user_id = window.localStorage.getItem('user_id');
+        $('#user').val(user_id);
+		getParams_1();
+	});
+	
+	
+	function showShare(){
+		$('#sheet1').show();
+	}
+	
+	function getData() {
+	    var params = {
+	        'user' : $('#user').val()
+		};
+	    $.post(host + '/index/getinfo.html',params,function (data) {
+	        dealData(data.data['new'],data.data['hot']);
+		},'JSON');
+	}
+	//处理数据
+	function dealData(arr) {
+        var arr1_new = arr['new'];
+        var arr2_hot = arr['hot'];
+		var html_1 = '';
+		for(var i=0;i<arr1_new.length;++i) {
+			var url = 'replase/detail.html?id='+arr1_new[i].id + '&model=' + arr1_new[i].model + '&type=' + arr1_new[i].type;
+			html_1 += '<li class="mui-table-view-cell"><a href="'+url+'"><span>'+arr1_new[i].disTime+'</span>'+arr1_new[i].title+'</a> </li>';
+		}
+		$('#items2').html(html_1);
+        var html_2 = '';
+        for(var i=0;i<arr2_hot.length;++i) {
+        	var url = 'replase/detail.html?id='+arr2_hot[i].id + '&model=' + arr2_hot[i].model + '&type=' + arr2_hot[i].type;
+            html_2 += '<li class="mui-table-view-cell"><a href="'+url+'"><span>'+arr2_hot[i].disTime+'</span>'+arr2_hot[i].title+'</a> </li>';
+        }
+        $('#items1').html(html_2);
+	}
+	/**
+	 * 获取参数
+	 */
+	function getParams_1(){
+		var params = {
+			id : $('#user').val()
+		}
+		$.post(host + '/common/index.html',params,function(data){
+			if(data.code == 1) {
+				for(var p in data){
+					if(p == 'code') continue;
+					if(p == 'info') {
+					    eval('var arr = ' + data[p]);
+					    var arr1_new = arr['new'];
+                        var arr2_hot = arr['hot'];
+                        var html_1 = '';
+                        for(var i=0;i<arr1_new.length;++i) {
+							var url = 'release/detail.html?id='+arr1_new[i].id + '&model=' + arr1_new[i].model + '&type=' + arr1_new[i].type;
+							html_1 += '<li class="mui-table-view-cell"><a href="'+url+'"><span>'+arr1_new[i].disTime+'</span>'+arr1_new[i].title+'</a> </li>';                        
+                        }
+                        $('#items2').html(html_1);
+                        var html_2 = '';
+                        for(var i=0;i<arr2_hot.length;++i) {
+				        	var url = 'release/detail.html?id='+arr2_hot[i].id + '&model=' + arr2_hot[i].model + '&type=' + arr2_hot[i].type;
+				            html_2 += '<li class="mui-table-view-cell"><a href="'+url+'"><span>'+arr2_hot[i].disTime+'</span>'+arr2_hot[i].title+'</a> </li>';
+                        }
+                        $('#items1').html(html_2);
+					}else if( p == 'member_count' ) {
+	        			var text = '在线用户:' + data[p]*3;
+	        			$('#member_count').html(text);
+	        		}else {
+                        window.localStorage.setItem(p,data[p]);
+					}
+				}
+			}
+		},'JSON');
+	}
+	
+	
+	
+	
+	mui('body').on('tap','a',function(){
+	    window.top.location.href=this.href;
+	});
+</script>
+</body>
+</html>

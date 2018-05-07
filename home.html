@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="refresh" content="3;URL=index.html"> 
+    <title>服装公社</title>
+    <script language="javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link href="css/mui.picker.css" rel="stylesheet"/>
+     <link href="css/mui.poppicker.css" rel="stylesheet"/>
+    <link href="css/iconfont.css" rel="stylesheet"/>
+  
+    </head>
+    <body>
+    <img src="images/yd.png" style="width:100%;">
+    <script>
+        $(function () {
+            var user_id = window.localStorage.getItem('user_id');
+            if(user_id > 0){
+                setTimeout(function (){
+                    window.location.href = 'index.html';
+                }, 3 * 1000);
+            }else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

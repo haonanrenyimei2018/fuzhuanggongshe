@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+            var user_id = window.localStorage.getItem('user_id');
+            if(user_id > 0){
+                window.location.href = 'index.html';
+            }else {
+                window.location.href = 'login.html';
+            }
+		</script>
+	</body>
+</html>

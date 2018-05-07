@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script language="javascript" src="js/jquery-3.2.1.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/iconfont.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        $(function(){
+            //搜索框显示隐藏
+            $('.mui-icon-search').click(function(){
+                if($('#mui-search').is(":hidden")) {
+                    $('#mui-search').show();
+                }else{
+                    $('#mui-search').hide();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="index.html"></a>
+        <h1 class="mui-title">我的服务</h1>
+        </div>
+  </header>
+  <div class="mui-content">
+      <form class="mui-input-group" id="addForm" style=" background:none;">
+      	<div class="mui-view">
+      		<div class="mui-input-row">
+              <label>付款人手机号</label>
+              <input type="number" id="phone" name="phone" placeholder="请输入手机号">
+        	</div>
+        	<div class="mui-input-row">
+              <label>标题</label>
+              <input type="text" id="title" name="title" placeholder="请输入标题">
+        	</div>
+        	<div class="mui-input-row">
+              <label>金额</label>
+              <input type="number" id="money" value="0" name="money" placeholder="请输入金额">
+        	</div>
+        	<div class="mui-button-row">
+	            <button type="button" data-loading-text="发布中" onclick="addEvent()" class="mui-btn mui-btn-primary" style="width:auto;">发布</button>
+	        </div>
+        </div>
+        <input type="hidden" name="id" id="id">
+      </form>
+  </div>
+<input type="hidden" name="user_id" id="user_id">
+<script src="js/mui.min.js"></script>
+<script src="js/mui.view.js"></script>
+<script src="layer/layer.js"></script>
+<script src="layui/layui.js"></script>
+<script src="js/config.js"></script>
+<script src="js/otcms.js"></script>
+<script>
+	$(function (){
+		var user_id =  window.localStorage.getItem('user_id');
+        if(user_id > 0){
+            $('#id').val(user_id);
+            $('#user_id').val(user_id);
+        }else {
+            window.location.href = 'login.html';
+        }
+	});
+	function addEvent() {
+		var phone = $('#phone').val(),
+			title = $('#title').val(),
+			money = $('#money').val();
+		if(phone == '') {
+			mui.toast('请输入付款人手机号!');
+			return false;
+		}
+		if(title == ''){
+			mui.toast('请输入标题!');
+			return false;
+		}
+		if(money <= 0){
+			mui.toast('请输入金额!');
+			return false;
+		}
+		$.post(host + '/service/add.html',$('#addForm').serialize(),function(data) {
+			if(data.code == 1){
+				mui.alert(data.msg, '提示', function() {
+					window.location = 'user.html';
+				});
+			}else {
+				mui.toast(data.msg);
+			}
+		},'JSON');
+	}
+</script>
+</body>
+</html>

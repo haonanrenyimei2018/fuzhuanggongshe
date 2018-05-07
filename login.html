@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>服装公社--登录</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body style="background:url(images/bg.jpg) no-repeat top center; background-size:cover; width:100%; height:100%;">
+<div  style="padding:20px 5%;">
+<div class="logo" style="text-align:center;"><img src="images/logo.png" width="60%"></div>
+    <form class="bs-example bs-example-form" role="form" id="loginForm" method="post" action="">
+        <div class="input-group">
+            <span class="glyphicon glyphicon-user"></span>
+            <input type="text" class="form-control" id="username" name="username" placeholder="请输入手机号">
+        </div>
+         <div class="input-group">
+            <span class="glyphicon glyphicon-lock"></span>
+            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+        </div>
+        <!--<div class="input-group">
+            <span class="glyphicon glyphicon-user"></span>
+            <input type="text" name="code" id="code" class="form-control" placeholder="请输入验证码">
+            <a class="get-code" onclick="sendSms()">获取验证码</a>
+        </div>-->
+        <div class="form-button input-group">
+        	<button type="button" class="btn btn-primary" onclick="doLogin()" data-complete-text="Loading finished">登录</button>
+        </div>
+        <div class="form-bottom input-group">
+        <a href="register.html">免费注册</a> | <a href="forget.html">忘记密码</a>
+        </div>
+    </form>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script> 
+<script src="js/config.js"></script>
+<script src="layer/layer.js"></script>
+<script src="js/otcms.js"></script>
+<script>
+	$(function (){
+		var user_id = window.localStorage.getItem('user_id');
+        if(user_id > 0){
+            window.location = 'home.html';
+        }
+	});
+	var flag = true;
+    var time = 60;
+    var timer;
+    function sendSms(){
+        if(!flag){ //已经发送给短信了
+            otcms.error('不能重复发送短信');
+            return false;
+        }
+        var phone = $('#username').val();
+        if(phone == ''){
+            otcms.error('请输入手机号');
+            return false;
+        }
+        var param = {
+            phone : phone,
+        	type : 'login'
+        };
+        $.post(host + '/common/sendSms1.html',param,function (data) {
+            flag = false;
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:2000}, function(index){
+                    layer.close(index);
+                });
+            }else {
+                otcms.error(data.msg);
+            }
+            timer = setInterval(function () {
+                --time;
+                if(time <= 0){
+                    flag = true;
+                    $('.get-code').html('获取验证码');
+                    clearInterval(timer);
+                    time = 60;
+                }else {
+                    $('.get-code').html(time);
+                }
+            },1*1000);
+        },'JSON');
+    }
+	function doLogin(){
+		var username = $('#username').val(),
+			password = $('#password').val();
+//			code = $('#code').val();
+		if(username == ''){
+			otcms.error('用户名不能为空！');return false;
+		}
+		if(password == ''){
+			otcms.error('密码不能为空'); return false;
+		}
+//		if(code == ''){
+//			otcms.error('请输入手机验证码');
+//			return false;
+//		}
+		$.post(host + '/login/login.html',$('#loginForm').serialize(),function (data) {
+			if(data.code == 1){
+				window.localStorage.setItem('user_id',data.data);
+			    window.localStorage.setItem('user_token',data.token);
+			    otcms.success(data.msg,'home.html');
+			}else {
+				otcms.error(data.msg);
+			}
+		},'JSON');
+	}
+</script>
+</body>
+</html>

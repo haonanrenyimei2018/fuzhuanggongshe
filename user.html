@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script language="javascript" src="js/jquery-3.2.1.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/iconfont.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        $(function(){
+            //搜索框显示隐藏
+            $('.mui-icon-search').click(function(){
+                if($('#mui-search').is(":hidden")) {
+                    $('#mui-search').show();
+                }else{
+                    $('#mui-search').hide();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav"> <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ></a>
+    <h1 class="mui-title">服装公社</h1>
+    </div>
+</header>
+<div class="mui-content">
+    <div id="app" class="mui-views"> 　　　
+        <div class="mui-view"> 　　　　　　
+            <div class="mui-pages"></div>
+        </div>
+    </div>
+    <div id="setting" class="mui-page"> 　　
+        <div class="mui-page-content"> 　　　　　　
+            <div class="mui-scroll-wrapper"> 　　　　　　　　
+                <div class="mui-scroll" style="padding:0;height:500px;overflow: auto;"> 　　　　　　　　　
+                    <ul class="mui-table-view mui-table-view-chevron">
+                        <li class="mui-table-view-cell mui-media"> <a class="mui-navigate-right" href="#account"> 
+                        	<img class="mui-media-object mui-pull-left head-img" id="head-img" src="images/48x48.png">
+                            <div class="mui-media-body"> Hello,<span id="account"></span>
+                                <p class="mui-ellipsis">账号:<span id="phone"></span></p>
+                            </div>
+                        </a> </li>
+                    </ul>
+                    <ul class="mui-table-view mui-table-view-chevron">
+                        <li class="mui-table-view-cell"> <a href="wallet/index.html" class="mui-navigate-right">我的钱包</a> </li>
+                    </ul>
+                    <ul class="mui-table-view mui-table-view-chevron">
+                        <!--<li class="mui-table-view-cell"> <a href="#notifications" class="mui-navigate-right">我的发布</a> </li>-->
+<!--                        <li class="mui-table-view-cell"> <a href="service.html" class="mui-navigate-right">担保付款</a> </li>
+-->                        <li class="mui-table-view-cell">我的推广<span class="mui-badge mui-badge-primary" id="mCount">0</span> </li>
+                        <li class="mui-table-view-cell"> <a href="#general" class="mui-navigate-right">用户设置</a> </li>
+                        <li class="mui-table-view-cell"> <a href="guarantee/index.html" class="mui-navigate-right">担保付款</a> </li>
+                    </ul>
+                    <ul class="mui-table-view mui-table-view-chevron">
+                    	<li class="mui-table-view-cell"> <a href="#realname" class="mui-navigate-right">实名认证</a> </li>
+                        <li class="mui-table-view-cell"> <a href="#feedback" class="mui-navigate-right">意见反馈</a> </li>
+                        <li class="mui-table-view-cell"> <a href="#about" class="mui-navigate-right">关于服务公社 </a> </li>
+                        <li class="mui-table-view-cell"> <a  href="#link" class="mui-navigate-right">联系我们</a> </li>
+                        <li class="mui-table-view-cell"> <a  href="#version" class="mui-navigate-right">检查更新</a> </li>
+                    </ul>
+                    <div style="width:100%; text-align:center; padding:20px 0;">
+                    	<button type="button" class="mui-btn mui-btn-danger" onclick="quite()" style="margin: 0 auto;">退出登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div id="feedback" class="mui-page">
+		<div class="mui-page-content"> 　　　　　　
+            <div class="mui-scroll-wrapper" style="background:#fff; "> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff; padding-top:30px; ">
+                	<div class="mui-input-row">
+			            <select class="mui-input-clear" name="type" id="type" style="border:#eee solid 1px" >
+			                <option value="item-1">--请选择意见类型--</option>
+			            </select>
+                    </div>
+			        <div class="mui-input-row mui-input-row-end" >
+			            <textarea id="content" rows="5" name="content" placeholder="意见描述"></textarea>
+			        </div>
+			        <div style="text-align:center; padding: 15px 0;">
+			            <button type="button" class="mui-btn mui-btn-blue" onclick="addEvent()" style=" background:#fff; color:#3ea1f6;">提交</button>
+			        </div>
+                </div>
+            </div>	
+        </div>
+	</div>
+	<div id="realname" class="mui-page">
+		<div class="mui-page-content"> 　　　　
+			<div class="mui-scroll-wrapper" style="background:#fff; overflow:auto;"> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff;padding-top:-50px;">
+　　					<div class="mui-content">
+		      			<form class="mui-input-group" id="addForm" style=" background:none;">
+		            		<div class="mui-view" style="padding:15px 15px;">
+						        <div class="mui-view-title">身份证正面</div>
+						         <div class="mui-imglist">
+						         	<div class="mui-icon" style="display: none;" id="image1"></div>
+						             <div class="mui-icon mui-icon-plusempty" id="uploads_1"></div>
+						             <div class="clear"></div>
+						         </div>
+						         <div class="mui-view-title">身份证反面</div>
+						         <div class="mui-imglist">
+						         	 <div class="mui-icon" id="image2" style="display: none;" ></div>
+						             <div class="mui-icon mui-icon-plusempty" id="uploads_2"></div>
+						             <div class="clear"></div>
+						         </div>
+		     				</div>
+		     				<div class="mui-view">
+		     					<div class="mui-input-row">
+		     						<label>银行卡号</label>
+		     						<input type="number" id="bank_card" name="bank_card" placeholder="请输入银行卡号">
+		     					</div>
+		     					<div class="mui-input-row">
+		     						<label>预留手机号</label>
+		     						<input type="number" id="phone" name="phone" placeholder="请输入预留手机号">
+		     					</div>
+		     				</div>
+		     				<input type="hidden" name="idn_1" id="idn_1" />
+		     				<input type="hidden" name="idn_2" id="idn_2" />
+		      			</form>
+		            </div>
+		            <div style="text-align:center; padding: 15px 0;">
+			            <button type="button" class="mui-btn mui-btn-blue" onclick="real_name()" style=" background:#fff; color:#3ea1f6;">提交</button>
+			        </div>
+                </div>
+			</div>
+        </div>
+	</div>
+    <div id="account" class="mui-page">
+        <div class="mui-page-content">　　　　　　
+            <div class="mui-scroll-wrapper" style="background:#fff; overflow:hidden;"> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff;padding-top:30px;">
+                    <div class="mui-about" >
+                        <div class="account-info">
+                            余额：<span style="display:inline-block;">1001</span> <button type="button"  class="mui-btn mui-btn-primary" style="width:auto;">在线充值</button>
+                        </div>
+                        <div class="account-tab">
+                            <div style="padding-top: 10px; background: #fff; overflow:hidden;">
+                                <div id="segmentedControl" class="mui-segmented-control"> <a class="mui-control-item mui-active" href="#item1"> 充值记录 </a> <a class="mui-control-item" href="#item2"> 消费记录 </a> </div>
+                            </div>
+                            <div id="item1" class="mui-control-content mui-active">
+                                <div id="scroll" class="mui-scroll-wrapper" data-scroll="1">
+                                    <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
+                                        <ul class="mui-table-view">
+                                            <li class="mui-table-view-cell"> <a href=""><span>昨天</span>大量童装外放</a> </li>
+                                            <li class="mui-table-view-cell"> <a href=""><span>昨天</span>寻找针织梭织样品室</a> </li>
+                                            <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>梭织订单外放</a> </li>
+                                            <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>自产自销</a> </li>
+                                            <li class="mui-table-view-cell"> <a href=""><span>昨天</span>大量童装外放</a> </li>
+                                            <li class="mui-table-view-cell"> <a href=""><span>昨天</span>寻找针织梭织样品室</a> </li>
+                                            <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>梭织订单外放</a> </li>
+                                            <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>自产自销</a> </li>
+                                        </ul>
+                                        <div style="text-align:center; padding: 15px 0;">
+                                            <button type="button" class="mui-btn more" onclick="javascript:location.href='1-1-01.html'" >显示更多>></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="item2" class="mui-control-content">
+                                <div class="mui-scroll">
+                                    <ul class="mui-table-view">
+                                        <li class="mui-table-view-cell"> <a href=""><span>今天</span>大量童装外放</a> </li>
+                                        <li class="mui-table-view-cell"> <a href=""><span>昨天</span>寻找针织梭织样品室</a> </li>
+                                        <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>梭织订单外放</a> </li>
+                                        <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>自产自销</a> </li>
+                                        <li class="mui-table-view-cell"> <a href=""><span>昨天</span>大量童装外放</a> </li>
+                                        <li class="mui-table-view-cell"> <a href=""><span>昨天</span>寻找针织梭织样品室</a> </li>
+                                        <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>梭织订单外放</a> </li>
+                                        <li class="mui-table-view-cell"> <a href=""><span>15小时前</span>自产自销</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="notifications" class="mui-page">　　
+        <div class="mui-page-content">　
+            <div class="mui-scroll-wrapper" style="background:#fff; "> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff; padding-top:30px;">
+                    <div class="mui-about">
+                        <ul class="mui-table-view mui-table-view1" id="myData">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="privacy" class="mui-page"> 　　　　
+        <div class="mui-page-content"> 　　　　　　
+            <div class="mui-scroll-wrapper" style="background:#fff; "> 　　　　　　　　
+                <div id="privacyView" class="mui-scroll" style="background:#fff; padding-top:30px; ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="general" class="mui-page"> 　　　　
+        <div class="mui-page-content"> 　　　　　　
+            <div class="mui-scroll-wrapper" style="background:#fff; "> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff; padding-top:30px; ">
+                    <form class="bs-example bs-example-form" role="form">
+                        <div class="input-group">
+                            <input type="password" name="password_old" id="password_old" class="form-control" placeholder="请输入旧密码">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="请输入新密码">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="请输入确认密码" id="password_re">
+                        </div>
+                        <div class="form-button input-group">
+                            <button type="button" class="btn btn-primary" onclick="updatePwd()" data-complete-text="Loading finished">重置登录密码</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="link" class="mui-page"> 　　　　
+        <div class="mui-page-content"> 　　　　　　
+            <div class="mui-scroll-wrapper" style="background:#fff;"> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff; padding-top:30px;">
+                    <div class="mui-about">
+                        <span>联系服装公社</span>
+                        <p id="link_content"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="about" class="mui-page"> 　　　　
+        <div class="mui-page-content"> 　　　　　　
+            <div class="mui-scroll-wrapper" style="background:#fff;"> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff; padding-top:30px;">
+                    <div class="mui-about">
+                        <span>关于服装公社</span>
+                        <p id="about_content"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="version" class="mui-page"> 　　　　
+        <div class="mui-page-content"> 　　　　　　
+            <div class="mui-scroll-wrapper" style="background:#fff;"> 　　　　　　　　
+                <div class="mui-scroll" style="background:#fff; padding-top:30px;">
+                    <div class="mui-about">
+                        <span>版本检测</span>
+                        <p id="version_content" style="text-align:center ;">
+                        	<div class="form-button input-group" id="check">
+                            	<button type="button" class="mui-btn mui-btn-danger" onclick="download()" data-complete-text="Loading finished">立即更新</button>
+                        	</div>
+                        	<div class="form-button input-group" id="check1" style="text-align: center;">
+                        		 当前版本已经是最新版本了
+                        	</div>
+                        	
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="mui-bar mui-bar-tab"> 
+	<a class="mui-tab-item mui-active" href="index.html"> 
+		<span class="mui-icon mui-icon-home"></span> 
+		<span class="mui-tab-label">首页</span> 
+	</a> 
+	<a class="mui-tab-item" href="extension.html"> 
+		<span class="mui-icon mui-icon-plusempty"></span>
+		<span class="mui-tab-label" style="padding-top:25px;">我要推广</span>
+	</a> 
+	<a class="mui-tab-item" href="user.html"> 
+		<span class="mui-icon mui-icon mui-icon-contact"></span> 
+		<span class="mui-tab-label">我的</span> 
+	</a> 
+</nav>
+<input type="hidden" name="user_id" id="user_id">
+<script src="js/mui.min.js"></script>
+<script src="js/mui.view.js"></script>
+<script src="layer/layer.js"></script>
+<script src="layui/layui.js"></script>
+<script src="js/config.js"></script>
+<script src="js/otcms.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
+<script language="javascript">
+	var url = '';
+    //初始化单页view
+    var viewApi = mui('#app').view({
+        defaultPage: '#setting'
+    });
+    var view = viewApi.view;
+    (function($) {
+    	$.init();
+        //处理view的后退与webview后退
+        var oldBack = $.back;
+        $.back = function() {
+            if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+                viewApi.back();
+            } else { //执行webview后退
+                oldBack();
+            }
+        };
+        //监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+        //第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+        view.addEventListener('pageBeforeShow', function(e) {
+            //    console.log(e.detail.page.id + ' beforeShow');
+        });
+        view.addEventListener('pageShow', function(e) {
+            //    console.log(e.detail.page.id + ' show');
+        });
+        view.addEventListener('pageBeforeBack', function(e) {
+            //    console.log(e.detail.page.id + ' beforeBack');
+        });
+        view.addEventListener('pageBack', function(e) {
+            //    console.log(e.detail.page.id + ' back');
+        });
+    })(mui);
+    $(function (){
+        var user_id =  window.localStorage.getItem('user_id');
+        if(user_id > 0){
+            $('#user_id').val(user_id);
+        }else {
+            window.location.href = 'login.html';
+        }
+        eval('var user = ' + window.localStorage.getItem('user'));
+        $('#account').html(user.phone);
+        $('#phone').html(user.phone);
+        
+        
+        $('#link_content').html(window.localStorage.getItem('link'));
+        $('#about_content').html(window.localStorage.getItem('about'));
+        $('#privacyView').html(window.localStorage.getItem('service'));
+        var height = document.documentElement.clientHeight;
+        $('.mui-scroll').height(height - 80);
+        
+        var url = domain + user_id;
+		$('#qrcode').qrcode(url);
+		
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            //只能上传一张
+            var uploadInst = upload.render({
+                elem : '#uploads_1',
+                url : upload_url,
+                done: function(res){
+                    $('#image1').append('<img src="'+res.src+'" width="100px" height="80px" />').show();
+                     $('#idn_1').val(res.src);
+                }
+            });
+        });
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            //只能上传一张
+            var uploadInst = upload.render({
+                elem : '#uploads_2',
+                url : upload_url,
+                done: function(res){
+                    $('#image2').append('<img src="'+res.src+'" width="100px" height="80px" />').show();
+                    $('#idn_2').val(res.src);
+                }
+            });
+        });
+    	fbTypes();
+        getMy();
+        show();
+        versions();
+        getMembers();
+    });
+    
+    mui.plusReady(function (){
+    	upgrade();
+    });
+    
+
+    mui('body').on('tap','a',function(){
+        window.top.location.href=this.href;
+    });
+    
+	//意见反馈
+	function fbTypes(){
+		eval('var types = ' + window.localStorage.getItem('feedbackType'));
+		var html = '';
+		for(var p in types){
+			html+= '<option value="'+p+'">'+types[p]+'</option>';
+		}
+		$('#type').html(html);
+	}
+
+    /**
+     * 保存意见反馈
+     */
+    function addEvent() {
+        var type = $('#type').val(),
+            content = $('#content').val();
+
+        if(content == '') {
+            otcms.error('反馈意见不能为空!');
+            return false;
+        }
+        var params = {
+            type : $('#type').val(),
+            content : content
+        };
+        $.post(host + '/feedback/add.html',params,function (data) {
+            if(data.code == 1){
+                otcms.success(data.msg,'user.html');
+            }else {
+                otcms.error(data.msg);
+            }
+        },'JSON');
+    }
+    //修改密码
+    function updatePwd() {
+        var pwd_old = $('#password_old').val(),
+            pwd = $('#password').val(),
+            pwd_re = $('#password_re').val();
+
+        if (pwd_old == '') {
+            otcms.error('请输入原密码');
+            return false;
+        }
+        if (pwd == '') {
+            otcms.error('请输入新密码！');
+            return false;
+        }
+        if (pwd != pwd_re) {
+            otcms.error('两次密码不一致');
+            return false;
+        }
+        var params = {
+            user_id: $('#user_id').val(),
+            password_old: pwd_old,
+            password: pwd
+        };
+        $.post(host + '/login/password.html', params, function (data) {
+            if (data.code == 1) {
+                otcms.success(data.msg, 'user.html');
+            } else {
+                otcms.error(data.msg);
+            }
+        }, 'JSON');
+    }
+    //退出登录
+    function quite() {
+    	var user_id =  window.localStorage.getItem('user_id');
+        window.localStorage.removeItem('user_id');
+        window.localStorage.removeItem('province');
+		window.localStorage.removeItem('province_name');
+		window.localStorage.removeItem('city');
+		window.localStorage.removeItem('city_name'); 
+		window.localStorage.removeItem('county');
+		window.localStorage.removeItem('county_name');
+		var params = {
+			id : user_id
+		};
+        $.post(host + '/login/logout.html',params,function (){
+          	window.location.href = 'login.html';
+        },'JSON');
+        
+    }
+    //获取我发布的
+    function getMy() {
+        var params = {
+            user_id : $('#user_id').val()
+        };
+        $.post(host + '/work/my.html',params,function (data) {
+            dealData(data.data);
+        },'JSON');
+    }
+    //格式化数据
+    function dealData(data) {
+        var html = '';
+        for (var i=0;i < data.length ; ++i) {
+            var image_arr = data[i].images.split('|');
+            html += '<li class="mui-table-view-cell mui-media">\n' +
+                        '<a href="#">\n' +
+                        '<div class="mui-title1">'+data[i].title+'</div>\n' +
+                        '<div class="mui-media-body">\n' +
+                        '<img class="mui-media-object mui-pull-left" src="'+image_arr[0]+'">\n' +
+                        '    <p class="mui-desc">'+data[i].intro+'</p>\n' +
+                        '</div>\n' +
+                        '<div class="mui-date"><span class="fl">'+data[i].date+'</span><span class="fr"><i class="mui-icon mui-icon mui-icon-location"></i>'+data[i].address+'</span><div class="clear"></div></div>\n' +
+                        '</a>\n' +
+                    '</li>';
+        }
+        $('#myData').html(html);
+    }
+    //实名认证
+    function real_name(){
+    	var idn_1 = $('#idn_1').val(),
+    		idn_2 = $('#idn_2').val(),
+    		bank_card = $('#bank_card').val(),
+    		phone = $('#phone').val();
+    	
+    	if($.trim(idn_1) == ''){
+    		otcms.error('请上传身份证正面');
+    		return  false;
+    	}
+    	if(idn_2 == '') {
+    		otcms.error('请上传身份证反面');
+    		return false;
+    	}
+    	if($.trim(bank_card) == ''){
+    		otcms.error('请输入银行卡号！');
+    		return false;
+    	}
+    	if($.trim(phone) == '') {
+    		otcms.error('请输入银行卡预留手机号');
+    		return false;
+    	}
+    	var user_id = window.localStorage.getItem('user_id');
+    	var param  = {
+    		idn_1 : idn_1,
+    		idn_2 : idn_2,
+    		bank_card : bank_card,
+    		phone : phone,
+    		m_id : user_id
+    	}
+    	$.post(host + '/common/realname.html',param,function (data){
+    		if(data.code == 1){
+    			otcms.success(data.msg,'user.html');
+    		}else {
+    			otcms.error(data.msg);
+    		}
+    	},'JSON');
+    }
+    //展示实名认证信息
+    function show(){
+    	var user_id = window.localStorage.getItem('user_id');
+    	var param  = {
+    		user_id : user_id
+    	}
+    	$.post(host + '/common/show.html',param,function (data){
+    		if(data.code == 1) {
+    			var auth = data.data;
+    			$('#image1').append('<img src="'+auth.idn_1+'" width="100px" height="80px" />').show();
+            	$('#idn_1').val(auth.idn_1);
+            	$('#image2').append('<img src="'+auth.idn_2+'" width="100px" height="80px" />').show();
+            	$('#idn_2').val(auth.idn_2);
+				$('#phone').val(auth.phone);
+				$('#bank_card').val(auth.bank_card);
+    		}
+    	},'JSON');	
+    }
+    function versions(){
+    	var html = '';
+    	$.post(host + '/common/version.html',{},function (data){
+    		var v = data.data.versioncode;
+    		if(v != version_code){
+    			url = data.data.downdress;
+    			$('#check').show();
+    			$('#check1').hide();
+    		}else {
+    			$('#check').hide();
+    			$('#check1').show();
+    		}
+    	},'JSON');
+    } 
+    function download(){
+    	window.open(url);
+    }
+    
+    function getMembers(){
+    	var user_id = window.localStorage.getItem('user_id');
+    	var params = {
+    		id : user_id
+    	};
+		$.post(host + '/common/getMembers.html',params, function (data) {
+			if(data.code == 1){
+				$('#mCount').html(data.count);
+			}
+		},'JSON');	
+   }
+</script>
+</body>
+</html>

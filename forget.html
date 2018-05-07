@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>服装公社-忘记密码</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body style="background:url(images/bg.jpg) no-repeat top center; width:100%; height:100%;">
+<div  style="padding:20px 5%;">
+<div class="logo" style="text-align:center;"><img src="images/logo.png" width="60%"></div>
+    <form class="bs-example bs-example-form" role="form" id="forgetForm">
+        <div class="input-group">
+            <span class="glyphicon glyphicon-user"></span>
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="请输入手机号">
+        </div>
+         <div class="input-group">
+            <span class="glyphicon glyphicon-lock"></span>
+            <input type="password" name="password" id="password" class="form-control" placeholder="请输入新密码">
+        </div>
+          <div class="input-group">
+            <span class="glyphicon glyphicon-lock"></span>
+            <input type="password" class="form-control" id="password_re" placeholder="请再次输入新密码">
+        </div>
+        <div class="input-group">
+            <span class="glyphicon glyphicon-user"></span>
+            <input type="text" name="code" id="code" class="form-control" placeholder="请输入验证码">
+            <a class="get-code" onclick="sendSms()">获取验证码</a>
+        </div>
+        <div class="form-button input-group">
+        <button type="button" class="btn btn-primary" onclick="doEvent()" data-complete-text="Loading finished">重置登录密码
+</button>
+        </div>
+      
+    </form>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script> 
+<script src="js/bootstrap.min.js"></script>
+<script src="js/config.js"></script>
+<script src="layer/layer.js"></script>
+<script src="js/otcms.js"></script>
+<script>
+	var flag = true;
+    var time = 60;
+    var timer;
+    function sendSms(){
+        if(!flag){ //已经发送给短信了
+            otcms.error('不能重复发送短信');
+            return false;
+        }
+        var phone = $('#phone').val();
+        if(phone == ''){
+            otcms.error('请输入手机号');
+            return false;
+        }
+        var param = {
+            'phone' : phone,
+            type : 'forget'
+        };
+        $.post(host + '/common/sendSms1.html',param,function (data) {
+            flag = false;
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:2000}, function(index){
+                    layer.close(index);
+                });
+            }else {
+                otcms.error(data.msg);
+            }
+            timer = setInterval(function () {
+                --time;
+                if(time <= 0){
+                    flag = true;
+                    $('.get-code').html('获取验证码');
+                    clearInterval(timer);
+                    time = 60;
+                }else {
+                    $('.get-code').html(time);
+                }
+            },1*1000);
+        },'JSON');
+    }
+	function doEvent(){
+		var phone = $('#phone').val(),
+			password = $('#password').val(),
+			password_re = $('#password_re').val(),
+			code = $('#code').val();
+		if(phone == ''){
+			otcms.error('请输入手机号'); return false;
+		}
+		
+		if(password == ''){
+			otcms.error('请输入密码');
+			return false;
+		}
+		if(password != password_re){
+			otcms.error('两次密码输入不一致');
+			return false;
+		}
+		if(code == ''){
+			otcms.error('手机验证码不能为空!');
+			return false;
+		}
+		$.post(host + '/login/forget.html',$('#forgetForm').serialize(),function (data) {
+			if(data.code == 1){
+				otcms.success('密码修改成功','login.html');	
+			}else {
+				otcms.error('操作失败');
+			}
+		},'JSON');
+	}
+</script>
+</body>
+</html>

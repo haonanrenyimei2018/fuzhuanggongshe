@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <script language="javascript" src="js/jquery-3.2.1.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/iconfont.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+	$(function()
+		{
+			//搜索框显示隐藏
+			$('.mui-icon-search').click(function(){
+				if($('#mui-search').is(":hidden"))
+				{
+					$('#mui-search').show();
+				}else
+				{
+					$('#mui-search').hide();
+				}
+			});
+		});
+    </script>
+    </head>
+    <body>
+ <header class="mui-bar mui-bar-nav"> <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ></a>
+      <h1 class="mui-title">服装公社</h1>
+      </div>
+    </header>
+	<div class="mui-content">
+	<div id="app" class="mui-views"> 　　　
+		<div class="mui-view"> 　　　　　　
+			<div class="mui-pages"></div>
+		</div>
+	</div>
+   	<div id="setting" class="mui-page"> 　　
+	    <div class="mui-page-content"> 　　　　　　
+	          <div class="mui-scroll-wrapper"> 　　　　　　　　
+		        <div class="mui-scroll" style="padding:0;"> 　　　　　　　　　
+		           <ul class="mui-table-view mui-table-view-chevron" >
+		            <li class="mui-table-view-cell mui-table-view-title"> <a><i class="iconfont icon-erweima1 mui-user-icon" ></i>我的推广二维码</a> </li>
+		            <li class="mui-table-view-cell" style="text-align:center; padding:10px 0;" id="qrcode">
+		            </li>
+		            <li class="mui-table-view-cell">我的推广<span class="mui-badge mui-badge-primary" id="mCount">0</span> </li>
+		          </ul>
+		        </div>
+	      </div>
+	    </div>
+	</div>
+  </div>
+  <input type="hidden" name="user_id" id="user_id">
+<nav class="mui-bar mui-bar-tab"> 
+	<a class="mui-tab-item mui-active" href="index.html"> 
+		<span class="mui-icon mui-icon-home"></span> 
+		<span class="mui-tab-label">首页</span> 
+	</a> 
+	<a class="mui-tab-item" href="extension.html"> 
+		<span class="mui-icon mui-icon-plusempty"></span> 
+		<span class="mui-tab-label" style="padding-top:25px;">我要推广</span> 
+	</a> 
+	<a class="mui-tab-item" href="user.html"> 
+		<span class="mui-icon mui-icon mui-icon-contact"></span> 
+		<span class="mui-tab-label">我的</span> 
+	</a> 
+</nav>
+<input type="hidden" name="user" id="user" />
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/mui.min.js"></script> 
+<script src="js/mui.view.js"></script> 
+<script src="js/config.js"></script>
+<script src="layer/layer.js"></script>
+<script src="js/otcms.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
+
+<script language="javascript">
+		//初始化单页view
+ 　　var viewApi = mui('#app').view({
+  　　　　defaultPage: '#setting'
+  　　});
+  　 var view = viewApi.view;
+ 　　(function($) {
+ 　　　　//处理view的后退与webview后退
+ 　　　　var oldBack = $.back;
+ 　　　　$.back = function() {
+ 　　　　　　if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+ 　　　　　　　　viewApi.back();
+ 　　　　　　} else { //执行webview后退
+ 　　　　　　　　oldBack();
+ 　　　　　　}
+ 　　　　};
+ 　　//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+ 　　//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+ 　　　　view.addEventListener('pageBeforeShow', function(e) {
+ 　　　　　　//    console.log(e.detail.page.id + ' beforeShow');
+ 　　　　});
+ 　　　　view.addEventListener('pageShow', function(e) {
+ 　　　　　　//    console.log(e.detail.page.id + ' show');
+ 　　　　});
+ 　　　　view.addEventListener('pageBeforeBack', function(e) {
+ 　　　　　　//    console.log(e.detail.page.id + ' beforeBack');
+ 　　　　});
+ 　　　　view.addEventListener('pageBack', function(e) {
+ 　　　　　　//    console.log(e.detail.page.id + ' back');
+ 　　　　});
+ 　　})(mui);
+
+	mui('body').on('tap','a',function(){
+    	window.top.location.href=this.href;
+    });
+    
+    $(function (){
+    	var user_id = window.localStorage.getItem('user_id');
+		if(user_id == null){
+			window.location = 'login.html';
+			return false;
+		}
+		var url = domain + user_id;
+		$('#qrcode').qrcode(url);
+
+
+		$('#user').val(user_id);
+    	feedbackType();
+    });
+   	
+   	mui.plusReady(function() {
+   		var user_id =  window.localStorage.getItem('user_id');
+        if(user_id > 0){
+            $('#user_id').val(user_id);
+        }else {
+            window.location.href = 'login.html';
+        }
+   		upgrade();
+   		getMembers();
+   	});
+    function feedbackType(){
+    	$.post(host + '/index/feedbacktype.html',{},function (data){
+    		dealData(data.data);
+    	});
+    }
+    function dealData(data){
+    	var html = '';
+    	for(var i=0;i<data.length;++i){
+    		html += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+    	}
+    	$('#type').html(html);
+    	
+    }
+    //添加
+    function addEvent() {
+    	var type = $('#type').val(),
+    		content = $('#content').val(),
+    		user = $('#user').val();
+    	
+    	if(content == ''){
+    		otcms.error('请输入反馈内容'); return false;
+    	}
+    	var data = {
+    		type : type,
+    		content : content,
+    		user : user
+    	}
+    	$.post(host + '/feedback/add.html',data,function (res){
+    		if(res.code == 1){
+    			otcms.success('操作成功','user.html');
+    		}else {
+    			otcms.error(res.msg,'user.html');
+    		}
+    	},'JSON');
+    }
+    function getMembers(){
+    	var user_id = window.localStorage.getItem('user_id');
+    	var params = {
+    		id : user_id
+    	};
+		$.post(host + '/common/getMembers.html',params, function (data) {
+			if(data.code == 1){
+				$('#mCount').html(data.count);
+			}
+		},'JSON');
+  }
+</script>
+</body>
+</html>
