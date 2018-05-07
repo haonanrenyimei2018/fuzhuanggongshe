@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <link href="../layui/css/layui.css" rel="stylesheet" />
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mui.picker.css" rel="stylesheet"/>
+    <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    </head>
+    <body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="../index.html"></a>
+        <h1 class="mui-title">服装货源发布</h1>
+        </div>
+    </header>
+    <div class="mui-content">
+    	<div class="mui-input-group" style=" background:none;">
+    		<div class="mui-view" id="imagesDiv" style="padding:15px 15px;">
+    			
+    		</div>
+    		<div class="mui-view">
+    			<div class="mui-input-row">
+    				<span id="title"></span>
+		        </div>
+		        <div class="mui-input-row mui-input-row-end" >
+		        	<span id="intro"></span>
+		        </div>
+    		</div>
+    		<div class="mui-view">
+    			<div class="mui-input-row" id="addrDiv">
+          			<label>地址</label>
+    				<span id="address"></span>
+    			</div>
+    			<div class="mui-input-row">
+          			<label>联系人</label>
+    				<span id="link"></span>
+    			</div>
+    			<div class="mui-input-row">
+          			<label>联系方式</label>
+    				<span id="phone"></span>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <nav class="mui-bar mui-bar-tab mui-lx-tab">
+	    
+	    <a class="mui-tab-item" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" style="background:#3ea1f6; color:#fff;">
+	        <span class="mui-tab-label"><i class="mui-icon mui-icon-phone"></i>在线客服</span>
+	    </a>
+	    <span class="mui-tab-item mui-active" id="callPhone">
+	        <span class="mui-tab-label"><i class="mui-icon mui-icon-chatbubble"></i>联系对方</span>
+	    </span>
+	</nav>
+    <input type="hidden" name="model" id="model">
+	<input type="hidden" name="type" id="type">
+	<input type="hidden" name="id" id="id">
+    <script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/mui.picker.js"></script>
+	<script src="../js/mui.poppicker.js"></script> 
+	<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script> 
+	<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script> 
+    <script src="../layui/layui.js"></script>
+	<script src="../js/config.js"></script>
+    <script src="../js/otcms.js"></script>
+    <script>
+    	/*
+    	 <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes">
+    	 <img border="0" src="http://wpa.qq.com/pa?p=2::52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+    	 * */
+    	var phone = '';
+    	$(function () {
+            var user_id = window.localStorage.getItem('user_id');
+            if(user_id == null){
+                window.location = '../login.html';
+                return false;
+            }
+            $('#user').val(user_id);
+            var operation = getParams();
+	        $('#model').val(operation['model']);
+	        $('#type').val(operation['type']); 
+			$('#id').val(operation['id']);
+			$('.mui-title').html(modelData[operation['model']]['title']);
+			show();
+    	});
+    	function show() {
+    		var param = {
+    			id : $('#id').val(),
+    			model : $('#model').val(),
+    			type : $('#type').val()
+    		};
+    		$.post(host + '/work/show.html',param,function(res){
+    			var data = res.data;
+    			var html = res.html;
+    			if(data.thumb_images != ''){
+    				var img_arr = data.thumb_images.split('|');
+    			}else {
+    				var img_arr = data.images.split('|');
+    			}
+    			
+    			var msg = '';
+    			for(var i=0;i<img_arr.length;++i){
+    				msg += '<img src="'+img_arr[i]+'" width="60%" height="200px" style="margin-top:2px;display:block;" >';
+    			}
+    			$('#imagesDiv').html(msg);
+    			$('#title').html(checkPhone(data.title));
+    			$('#intro').html(checkPhone(data.intro));
+    			$('#address').html(data.address);
+    			$('#link').html(checkPhone(data.link));
+    			$('#phone').html('******');
+    			$('#addrDiv').before(html);
+    			phone = data.phone;
+    			$('#callPhone').click(function (){
+    				plus.device.dial(phone,true );
+    			});
+    		},'JSON');
+    	}
+    	mui('body').on('tap','a',function(){
+	        window.top.location.href=this.href;
+	    });
+    </script>
+    </body>
+</html>

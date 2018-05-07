@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mui.picker.min.css" rel="stylesheet"/>
+    <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav"> <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="../index.html" ></a>
+    <h1 class="mui-title">寻找跟单验货忙工接活发布</h1>
+    </div>
+</header>
+<div class="mui-content">
+    <form class="mui-input-group" style=" background:none;" id="addForm">
+        <div class="mui-view">
+            <div class="mui-input-row">
+                <input type="text" placeholder="标题" maxlength="15" name="title" id="title">
+            </div>
+            <div class="mui-input-row mui-input-row-end" >
+                <textarea id="textarea" rows="5" placeholder="请输入内容" name="intro"></textarea>
+            </div>
+        </div>
+
+        <div class="mui-view" style="padding:15px 15px;">
+            <div class="mui-view-title">我的需求</div>
+            <div class="mui-imglist">
+                <div class="mui-icon mui-icon-plusempty" id="uploads"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="mui-view">
+            <div class="mui-input-row">
+                <label>工作经验</label>
+                <select class="mui-input-clear" name="param[worktime]" id="worktime">
+                <option value="1">1-2年</option>
+                <option value="2">3-4年</option>
+                <option value="3">4-5年</option>
+                <option value="4">5-10年</option>
+            </select>
+            </div>
+            <div class="mui-input-row">
+                <label>年龄</label>
+                <input type="text" class="mui-input-clear" placeholder="请输入年龄" name="param[age]" id="age" data-input-clear="5" >
+            </div>
+
+            <div class="mui-input-row">
+                <label>薪资要求</label>
+                <select class="mui-input-clear" name="param[money]" id="money">
+                <option value="1">1500-2000</option>
+                <option value="2">3000-4000</option>
+            </select>
+            </div>
+            <div class="mui-input-row">
+                <label>擅长的工作</label>
+                <select class="mui-input-clear" name="param[good]" id="good">
+	                <option value="1">跟单</option>
+	                <option value="2">验活</option>
+	                <option value="3">忙工</option>
+	            </select>
+            </div>
+            <div class="mui-input-row">
+                <label>地址</label>
+                <input type="hidden" name="province" id="province">
+                <input type="hidden" name="city" id="city">
+                <input type="hidden" name="county" id="county">
+                <input type="text" class="mui-input-clear" placeholder="地址" name="address" data-input-clear="5" id="mui-address">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-input-row">
+                <label>联系人</label>
+                <input type="text" class="mui-input-clear" placeholder="联系人" data-input-clear="5" id="link" name="link">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-input-row">
+                <label>电话</label>
+                <input type="text" class="mui-input-clear" placeholder="电话" data-input-clear="5" name="phone" id="phone">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-danger" onclick="javascript:history.go(-1);" style="width:auto; ">返回</button>&nbsp;&nbsp;
+	            <button type="button" data-loading-text="发布中" onclick="addEvent()" class="mui-btn mui-btn-primary" style="width:auto;">发布</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="thumb_images" id="thumb_images">
+    <input type="hidden" name="images" id="images">
+    <input type="hidden" name="model" value="9">
+    <input type="hidden" name="type" value="2">
+    <input type="hidden" name="user" id="user" value="">
+    <input type="hidden" name="target[province]" />
+    <input type="hidden" name="target[city]" />
+    <input type="hidden" name="target[county]" />
+    <input type="hidden" name="id" id="id" />
+    <input type="hidden" name="version" id="version" />
+</form>
+
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item mui-active" href="../index.html">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item" href="../extension.html">
+        <span class="mui-icon mui-icon-plusempty"></span>
+        <span class="mui-tab-label" style="padding-top:25px;">我要推广</span>
+    </a>
+
+    <a class="mui-tab-item" href="../user.html">
+        <span class="mui-icon mui-icon mui-icon-contact"></span>
+        <span class="mui-tab-label">我的</span>
+    </a>
+</nav>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="../js/mui.poppicker.js"></script>
+<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/public.js"></script>
+<script src="../layui/layui.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/otcms.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    $(function () {
+        var user_id = window.localStorage.getItem('user_id');
+        if(user_id == null){
+            window.location = '../login.html';
+            return false;
+        }
+        $('#user').val(user_id);
+        var id = $('#id').val();
+		if(id > 0){
+			edit(id);
+		}
+    });
+    function addEvent() {
+        var title = $('#title').val(),
+        	age = $('#age').val(),
+            link = $('#link').val(),
+            address = $('#mui-address').val(),
+        	phone = $('#phone').val();
+        if(title == '') {
+            mui.toast('标题必须填写!'); return false;
+        }
+        if(images_arr.length == 0){
+            mui.toast('请上传图片'); return false;
+        }
+        
+        if(age == '' || age <= 0) {
+        	mui.toast('请输入年龄');
+        	return false;
+        }
+        
+        if(address == ''){
+        	mui.toast('地址不能为空');
+        	return false;
+        }
+        if(link == '') {
+        	mui.toast('联系人必须填写!');
+        	return false;
+        }
+        if(hasPhone(link) == 1){
+        	mui.toast('联系人不能含有手机号');
+        	return false;
+        }
+        if(phone == ''){
+        	mui.toast('手机号不能为空!');
+        	return false;
+        }
+
+        $('#images').val(images_arr.join('|'));
+        $('#thumb_images').val(thumb_arr.join('|'));
+        var model = $('input[name=model]').val(),
+            type = $('input[name=type]').val();
+    	var url = 'list_1.html?model='+model+'&type='+type;
+        $.post(host + '/work/add',$('#addForm').serialize(),function (data) {
+            if(data.code == 1) {
+                otcms.success('添加成功',url);
+            }else {
+                otcms.error(data.msg);
+            }
+        },'JSON');
+    }
+
+    mui('body').on('tap','nav a',function(){
+        window.top.location.href=this.href;
+    });
+
+</script>
+</body>
+</html>

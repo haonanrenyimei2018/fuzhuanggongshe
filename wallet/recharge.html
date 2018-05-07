@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <script language="javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mui.picker.css" rel="stylesheet"/>
+    <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <link href="../css/iconfont.css" rel="stylesheet"/>
+    <link href="../css/css.css" rel="stylesheet"/>
+</head>
+<body >
+	<header class="mui-bar mui-bar-nav">
+	   <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">余额明细</h1>
+	</header>
+	<div class="mui-content" >
+      <div class="mui-tx-num">
+	     <span>充值金额</span>
+	     <div class="mui-tx-money">￥<input type="tel" autofocus name="mui-money" id="mui-money"></div>
+      </div>&nbsp;&nbsp;&nbsp;
+      <button type="button" class="mui-btn mui-btn-primary mui-cz" id="wxpay" onclick="wxpayEvent()" style="margin:10 auto;background-color: green;">微信充值</button>
+      <button type="button" class="mui-btn mui-btn-primary mui-cz" id="alipay" onclick="alipayEvent()" style="margin:10 auto;margin-top: 20px;">支付宝充值</button>
+	</div>
+	<script src="../js/mui.picker.js"></script>
+	<script src="../js/mui.poppicker.js"></script>
+	<script>
+		var payment = {};
+		mui.plusReady(function () {
+			plus.payment.getChannels( function(s){
+				for(var p in s){
+					if(s[p]['id'] == 'wxpay'){
+						payment['wxpay'] = s[p];
+					}
+					if(s[p]['id'] == 'alipay'){
+						payment['alipay'] = s[p];
+					}
+				}
+				if(!payment['alipay']){
+					//支付宝支付
+					$('#alipay').hide();
+				}
+				if(!payment['wxpay']) {
+					$('#wxpay').hide();
+				}
+			}, function(e){
+				mui.toast( "获取支付通道列表失败："+e.message );
+			});
+		}, false );
+		//微信支付
+		function wxpayEvent() {
+			var statement = {
+				'productid' : 1,
+				'username' : '服装公社',
+				'quantity' : 0.01
+			};
+			var c = payment['wxpay'];
+			plus.payment.request(c, statement, function(){
+				alert("支付操作成功！");
+			}, function(e){
+				alert("支付失败："+e.message);
+			});
+		}
+		//支付宝支付
+		function alipayEvent() {
+			
+		}
+		
+		
+		
+		
+	</script>
+	</body>
+</html>
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>担保交易</title>
+	    <link href="../layui/css/layui.css" rel="stylesheet" />
+	    <script src="../js/mui.min.js"></script>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link href="../css/iconfont.css" rel="stylesheet"/>
+        <link href="../css/mui.picker.min.css" rel="stylesheet"/>
+    	<link href="../css/mui.poppicker.css" rel="stylesheet"/>
+	    <script type="../text/javascript" charset="utf-8">
+	        mui.init();
+	    </script>
+	</head>
+	<body>
+	<header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="../index.html"></a>
+        <h1 class="mui-title">担保交易</h1>
+    </header>
+    <div class="mui-content">
+	    <div style="padding-top: 5px; background: #fff;">
+		    <div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#about">与我有关</a>
+				<a class="mui-control-item" href="#add">发布</a>
+		    </div>
+	    </div>
+	  	<div id="about" class="mui-control-content mui-active">
+	  		
+	  	</div>
+	  	<div id="add" class="mui-control-content">
+	    	<form class="mui-input-group" id="addForm" style=" background:none;">
+	    		<div class="mui-view">
+				    <div class="mui-input-row">
+				    	<input type="text" name="title" id="title" maxlength="15" placeholder="请输入标题" />
+				    </div>
+				    <div class="mui-input-row mui-input-row-end" >
+			        	<textarea id="intro" rows="5" name="intro" placeholder="请输入内容"></textarea>
+			        </div>
+		        </div>	
+		        <div class="mui-view" style="padding:15px 15px;">
+		        	<div class="mui-view-title">我的品牌展示</div>
+		        	<div class="mui-imglist">
+	             		<div class="mui-icon mui-icon-plusempty" id="uploads"></div>
+	             		<div class="clear"></div>
+	         		</div>
+		        </div>
+		        <div class="mui-view">
+		        	<div class="mui-input-row">
+	                	<label>订单数量</label>
+	                	<input type="number" id="amount" name="param[price]" placeholder="请输入订单数量">
+			        </div>
+			        <div class="mui-input-row">
+	                	<label>单价</label>
+	                	<input type="number" id="price" name="param[price]" placeholder="请输入单价">
+			        </div>
+			        <div class="mui-input-row">
+	                	<label>交工日期</label>
+	                	<input type="text" id="date_end" name="param[price]" class="mui-input-clear" data-input-clear="5" placeholder="请选择交工日期">
+			        	<span class="mui-icon mui-icon-clear mui-hidden"></span>
+			        </div>
+		        </div>
+		        <div class="mui-button-row">
+		        	<button type="button" data-loading-text="发布中" onclick="" class="mui-btn mui-btn-primary" style="width:auto;">发布</button>
+		        </div>
+	    	</form>
+	    </div>
+	</div>   
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="../js/mui.poppicker.js"></script>
+<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+<script src="../layui/layui.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/otcms.js"></script>
+<script src="../js/common.js"></script>	
+	<script>
+		mui.plusReady(function (){
+			var user_id =  window.localStorage.getItem('user_id');
+			console.log(user_id);
+	        if(user_id > 0){
+	            $('#id').val(user_id);
+	            $('#user_id').val(user_id);
+	        }else {
+	            window.location.href = 'login.html';
+	        }
+		});
+		(function($, doc) {
+			$.init();
+			$.ready(function() {
+				var date = new Date();
+		        var dateButton1=doc.getElementById("date_end");
+	            dateButton1.addEventListener('tap', function() {
+	                var optionsJson = {
+	                	type : 'date',
+	                	beginYear : date.getFullYear(),
+	                	endYear : date.getFullYear() + 5,
+	                };
+	                var id1 = this.getAttribute('id');
+					console.log(optionsJson);
+	                var picker1 = new $.DtPicker(optionsJson);
+	                picker1.show(function(rs1) {
+	                    dateButton1.value=rs1.text;
+	                    picker1.dispose();
+	                });
+	            }, false);
+			});
+		})(mui, document);
+		
+		mui('body').on('tap','a',function(){
+	        window.top.location.href=this.href;
+	    });
+	</script>
+	</body>
+</html>

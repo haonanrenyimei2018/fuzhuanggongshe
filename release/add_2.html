@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <link href="../layui/css/layui.css" rel="stylesheet" />
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mui.picker.min.css" rel="stylesheet"/>
+    <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <script type="../text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="../index.html"></a>
+    <h1 class="mui-title">裁剪烫熨包装放活发布</h1>
+</header>
+<div class="mui-content">
+    <form class="mui-input-group" id="addForm" style=" background:none;">
+        <div class="mui-view">
+            <div class="mui-input-row">
+                <input type="text" placeholder="标题" maxlength="15" name="title" id="title">
+            </div>
+            <div class="mui-input-row mui-input-row-end" >
+                <textarea rows="5" placeholder="请输入内容" name="intro"  id="textarea"></textarea>
+            </div>
+        </div>
+        <div class="mui-view" style="padding:15px 15px;">
+            <div class="mui-imglist">
+                <div class="mui-icon mui-icon-plusempty" id="uploads"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="mui-view">
+            <div class="mui-input-row">
+                <label>加工项目</label>
+                <select class="mui-input-clear" name="parram[project]" id="project">
+                </select>
+            </div>
+            <div class="mui-input-row">
+                <label>到料时间</label>
+                <input type="text" class="mui-input-clear" name="param[time_start]" placeholder="到料时间" data-input-clear="5" data-options="{&quot;type&quot;:&quot;date&quot;,&quot;beginYear&quot;:2018,&quot;endYear&quot;:2028}" id="mui-dl-date">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-input-row">
+                <label >加工费单价</label>
+                <input type="text" class="mui-input-clear" placeholder="加工费单价" name="param[price]" data-input-clear="5">
+            </div>
+            <div class="mui-input-row">
+                <label>最终交期</label>
+                <input type="text" class="mui-input-clear" placeholder="最终交期" name="param[time_end]" data-input-clear="5" id="mui-zz-date" data-options="{&quot;type&quot;:&quot;date&quot;,&quot;beginYear&quot;:2018,&quot;endYear&quot;:2028}">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-input-row">
+                <label>地址</label>
+                <input type="hidden" name="province" id="province">
+                <input type="hidden" name="city" id="city">
+                <input type="hidden" name="county" id="county">
+                <input type="text" class="mui-input-clear" placeholder="地址" name="address" data-input-clear="5" id="mui-address">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-input-row">
+                <label>联系人</label>
+                <input type="text" class="mui-input-clear" placeholder="联系人" name="link" id="link" data-input-clear="5">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-input-row">
+                <label>电话</label>
+                <input type="text" class="mui-input-clear" placeholder="电话" name="phone" id="phone" data-input-clear="5">
+                <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+            <div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-danger" onclick="javascript:history.go(-1);" style="width:auto; ">返回</button>&nbsp;&nbsp;
+	            <button type="button" data-loading-text="发布中" onclick="addEvent()" class="mui-btn mui-btn-primary" style="width:auto;">发布</button>
+            </div>
+        </div>
+        <input type="hidden" name="thumb_images" id="thumb_images">
+        <input type="hidden" name="images" id="images">
+        <input type="hidden" name="model" value="2">
+        <input type="hidden" name="type" value="1">
+        <input type="hidden" name="user" id="user" value="">
+        <input type="hidden" name="target[province]" />
+      <input type="hidden" name="target[city]" />
+      <input type="hidden" name="target[county]" />
+      <input type="hidden" name="id" id="id" />
+      <input type="hidden" name="version" id="version" />
+    </form>
+</div>
+<nav class="mui-bar mui-bar-tab">
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item mui-active" href="../index.html">
+            <span class="mui-icon mui-icon-home"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+        <a class="mui-tab-item" href="../extension.html">
+            <span class="mui-icon mui-icon-plusempty"></span>
+            <span class="mui-tab-label" style="padding-top:25px;">我要推广</span>
+        </a>
+
+        <a class="mui-tab-item" href="../user.html">
+            <span class="mui-icon mui-icon mui-icon-contact"></span>
+            <span class="mui-tab-label">我的</span>
+        </a>
+    </nav>
+</nav>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="../js/mui.poppicker.js"></script>
+<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/public.js"></script>
+<script src="../layui/layui.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/otcms.js"></script>
+<script src="../js/common.js"></script>
+<script>
+	var images_arr = [];
+    (function($, doc) {
+        $.init();
+        $.ready(function() {
+            var dateButton=doc.getElementById('mui-dl-date');
+            var date = new Date();
+            dateButton.addEventListener('tap', function() {
+                var optionsJson = {
+                	type : 'date',
+                	beginYear : date.getFullYear(),
+                	endYear : date.getFullYear() + 5
+                };
+                var id = this.getAttribute('id');
+
+                var picker = new $.DtPicker(optionsJson);
+                picker.show(function(rs) {
+                    dateButton.value=rs.text;
+                    picker.dispose();
+                });
+            }, false);
+
+
+            var dateButton1=doc.getElementById('mui-zz-date');
+            dateButton1.addEventListener('tap', function() {
+                var optionsJson1 = {
+                	type : 'date',
+                	beginYear : date.getFullYear(),
+                	endYear : date.getFullYear() + 5
+                };
+                var id1 = this.getAttribute('id');
+
+                var picker1 = new $.DtPicker(optionsJson1);
+                picker1.show(function(rs1) {
+                    dateButton1.value=rs1.text;
+                    picker1.dispose();
+                });
+            }, false);
+
+        });
+    })(mui, document);
+    $(function (){
+        var user_id = window.localStorage.getItem('user_id');
+        if(user_id == null){
+            window.location = '../login.html';
+            return false;
+        }
+        $('#user').val(user_id);
+        project();
+        var id = $('#id').val();
+		if(id > 0){
+			edit(id);
+		}
+    });
+
+    function project() {
+    	eval('var pros = ' + window.localStorage.getItem('project'));
+        var html = '';
+        for (var p in pros) {
+            html += '<option value="'+ p +'">'+pros[p]+'</option>';
+        }
+        $('#project').html(html);
+    }
+    //提交
+    function addEvent() {
+        var model = $('input[name=model]').val(),
+            type = $('input[name=type]').val();
+    	var url = 'list_1.html?model='+model+'&type='+type;
+    	
+        var title = $('#title').val(),
+            link = $('#link').val(),
+            address = $('#mui-address').val(),
+            date_1 = $('#mui-dl-date').val(),
+        	price = $('#price').val(),
+        	date_2 = $('#mui-zz-date').val(),
+        	phone = $('#phone').val();
+        if(title == '') {
+            mui.toast('标题必须填写!'); return false;
+        }
+        if(images_arr.length == 0){
+            mui.toast('请上传图片'); return false;
+        }
+        
+        if(date_1 == ''){
+        	mui.toast('到料时间不能为空!');
+        	return false;
+        }
+        if(date_2 == ''){
+        	mui.toast('最终交期不能为空!');
+        	return false;
+        }
+        if(price == '' || price <= 0){
+        	mui.toast('加工费单价必须大于0!');
+        	return false;
+        }
+        
+        if(address == ''){
+        	mui.toast('地址不能为空');
+        	return false;
+        }
+        if(link == '') {
+        	mui.toast('联系人必须填写!');
+        	return false;
+        }
+        if(hasPhone(link) == 1){
+        	mui.toast('联系人不能含有手机号');
+        	return false;
+        }
+        if(phone == ''){
+        	mui.toast('手机号不能为空!');
+        	return false;
+        }
+        
+        $('#images').val(images_arr.join('|'));
+        $('#thumb_images').val(thumb_arr.join('|'));
+        $.post(host + '/work/add.html' , $('#addForm').serialize(),function (data) {
+            if(data.code == 1) {
+                otcms.success('添加成功',url);
+            }else {
+                otcms.error(data.msg);
+            }
+        },'JSON');
+    }
+    mui('body').on('tap','a',function(){
+        window.top.location.href=this.href;
+    });
+</script>
+</body>
+</html>

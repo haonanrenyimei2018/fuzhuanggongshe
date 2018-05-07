@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+/*---------------------余额--------------------------*/
+.mui-ye-text{ display:inline-block; margin-top:100px; text-align:center;width:100%; font-size:16px;}
+.mui-ye-a{ width:100%; text-align:center;  font-size:26px; margin:20px 0 100px 0;}
+.mui-ye-a span{ display:inline-block; font-size:36px;}
+.mui-cz,.mui-tx{ margin:50px auto 0 auto; padding:10px 20px;font-size:16px;}
+.mui-tx{ background:#fff; border:#3ea1f6 solid 1px; color:#3ea1f6;}
+.mui-pro{ display:inline-block; width:100%; text-align:center; color:#3ea1f6; margin-top:100px;}
+.mui-yemx-tab-hd { margin-top:15px;}
+.mui-yemx-tab-hd a{ display:inline-block; width:30%;  }
+
+.mui-tx-num{width:95%; background:#fff; margin:15px auto; padding:20px 10px 10px 10px; line-height:40px;}
+.mui-tx-num #mui-money{ border:none; width:90%;}
+.mui-tx-money{ padding:15px 0; font-size:26px;}
+.mui-tx-qxmoney{ border-top:#eee solid 1px; line-height:40px; color:#666;}
+.mui-tx-qxmoney a{ display:inline-block; color:#3ea1f6;}
+

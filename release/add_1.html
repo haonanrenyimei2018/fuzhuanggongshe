@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <link href="../layui/css/layui.css" rel="stylesheet" />
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mui.picker.css" rel="stylesheet"/>
+    <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    </head>
+    <body>
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="../index.html"></a>
+            <h1 class="mui-title">一手货源发布</h1>
+            </div>
+        </header>
+    <div class="mui-content">
+      <form class="mui-input-group" id="addForm" style=" background:none;">
+	      <div class="mui-view">
+		    <div class="mui-input-row">
+		    	<input type="text" name="title" id="title" maxlength="15" placeholder="请输入标题" />
+		    </div>
+		    <div class="mui-input-row mui-input-row-end" >
+	        	<textarea id="intro" rows="5" name="intro" placeholder="请输入内容"></textarea>
+	        </div>
+	      </div>
+     
+     <div class="mui-view" style="padding:15px 15px;">
+        <div class="mui-view-title">我的品牌展示</div>
+         <div class="mui-imglist">
+             <div class="mui-icon mui-icon-plusempty" id="uploads"></div>
+             <div class="clear"></div>
+         </div>
+     </div>
+    <div class="mui-view">
+        <div class="mui-input-row">
+              <label>单价</label>
+              <input type="number" id="price" name="param[price]" placeholder="请输入单价">
+        </div>
+        <div class="mui-input-row">
+              <label>库存量</label>
+              <input class="mui-input-numbox" id="count" name="param[count]" type="number" placeholder="请输入库存量" />
+        </div>
+        <div class="mui-input-row">
+              <label>服装类型</label>
+              <select class="mui-input-clear" id="type" name="param[type]">
+              </select>
+        </div>
+        <div class="mui-input-row">
+              <label>地址</label>
+                <input type="hidden" name="province" id="province">
+                <input type="hidden" name="city" id="city">
+                <input type="hidden" name="county" id="county">
+              <input type="text" class="mui-input-clear" name="address" placeholder="地址" data-input-clear="5" id="mui-address">
+              <span class="mui-icon mui-icon-clear mui-hidden"></span>
+        </div>
+
+        <div class="mui-input-row">
+              <label>联系人</label>
+              <input type="text" class="mui-input-clear" id="link" name="link" placeholder="联系人" data-input-clear="5">
+              <span class="mui-icon mui-icon-clear mui-hidden"></span> </div>
+        <div class="mui-input-row">
+              <label>电话</label>
+              <input type="number" class="mui-input-clear" id="phone" name="phone" placeholder="电话" data-input-clear="5">
+              <span class="mui-icon mui-icon-clear mui-hidden"></span>
+        </div>
+        <div class="mui-button-row">
+			<button type="button" class="mui-btn mui-btn-danger" onclick="javascript:history.go(-1);" style="width:auto; ">返回</button>&nbsp;&nbsp;
+        	<button type="button" data-loading-text="发布中" onclick="addEvent()" class="mui-btn mui-btn-primary" style="width:auto;">发布</button>
+        </div>
+    </div>
+      <input type="hidden" name="images" id="images">
+      <input type="hidden" name="thumb_images" id="thumb_images">
+      <input type="hidden" name="model" id="model" value="1">
+      <input type="hidden" name="type" id="type_1" value="1">
+      <input type="hidden" name="user" id="user" value="">
+      <input type="hidden" name="target[province]" />
+      <input type="hidden" name="target[city]" />
+      <input type="hidden" name="target[county]" />
+      <input type="hidden" name="id" id="id" />
+      <input type="hidden" name="target[province]" />
+      <input type="hidden" name="target[city]" />
+      <input type="hidden" name="target[county]" />
+      <input type="hidden" name="version" id="version" />
+  </form>
+    <nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active" href="../index.html">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
+	    </a>
+	    <a class="mui-tab-item" href="../extension.html">
+	        <span class="mui-icon mui-icon-plusempty"></span>
+	        <span class="mui-tab-label" style="padding-top:25px;">我要推广</span>
+	    </a>
+	    
+	    <a class="mui-tab-item" href="../user.html">
+	        <span class="mui-icon mui-icon mui-icon-contact"></span>
+	        <span class="mui-tab-label">我的</span>
+	    </a>
+	</nav>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/mui.picker.js"></script>
+	<script src="../js/mui.poppicker.js"></script> 
+	<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script> 
+	<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script> 
+	<script src="../js/public.js"></script>
+    <script src="../layui/layui.js"></script>
+	<script src="../js/config.js"></script>
+    <script src="../js/otcms.js"></script>
+    <script src="../js/common.js"></script>
+	<script>
+        mui.plusReady(function(){
+        	var user_id = window.localStorage.getItem('user_id');
+            if(user_id == null){
+                window.location = '../login.html';
+                return false;
+            }
+            $('#user').val(user_id);
+            types();
+			var id = $('#id').val();
+			if(id > 0) {
+				edit(id);
+			}
+        });
+		//获取品牌类别，并且填充
+        function brands() {
+			eval('var brands=' + window.localStorage.getItem('brand'));
+			var html = '';
+            for(var p in brands) {
+                html += '<option value="'+p+'">'+brands[p]+'</option>';
+            }
+            $('#brand').html(html);
+        }
+		function types(){
+			eval('var datas = ' + window.localStorage.getItem('type'));
+			var html = '';
+            for(var p in datas) {
+                html += '<option value="'+p+'">'+datas[p]+'</option>';
+            }
+            $('#type').html(html);
+		}
+
+		function addEvent() {
+			var model = $('#model').val(),
+    		type = $('#type_1').val();
+    		var url = 'list_1.html?model='+model+'&type='+type;
+            var title = $('#title').val(),
+	            link = $('#link').val(),
+	            address = $('#mui-address').val(),
+	        	phone = $('#phone').val(),
+	        	price = $('#price').val(),
+	        	count = $('#count').val();
+            if(title == '') {
+                mui.toast('标题必须填写!'); return false;
+            }
+            if(images_arr.length == 0){
+                mui.toast('请上传图片'); return false;
+            }
+            if(price == '' || price <= 0){
+				mui.toast('单价必须大于0!');
+				return false;
+            }
+            if(count == '' || count <= 0){
+            	mui.toast('库存量必须大于0!');
+            	return false;
+            }
+            if(address == ''){
+            	mui.toast('地址不能为空');
+            	return false;
+            }
+            
+            if(link == '') {
+            	mui.toast('联系人必须填写!');
+            	return false;
+            }
+            
+            if(hasPhone(link) == 1){
+            	mui.toast('联系人不能含有手机号');
+            	return false;
+            }
+            if(phone == ''){
+            	mui.toast('手机号不能为空!');
+            	return false;
+            }
+            
+            
+            $('#images').val(images_arr.join('|'));
+            $('#thumb_images').val(thumb_arr.join('|'));
+            var id = $('#id').val();
+            
+            $.post(host + '/work/add.html',$('#addForm').serialize(),function (data) {
+                if(data.code == 1) {
+                    otcms.success('操作成功',url);
+                }else {
+                    otcms.error(data.msg);
+                }
+            },'JSON');
+        }
+		mui('body').on('tap','a',function(){
+		    window.top.location.href=this.href;
+		});
+	</script>
+</body>
+</html>
+

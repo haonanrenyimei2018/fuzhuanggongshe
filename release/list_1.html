@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>服装公社</title>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mui.picker.css" rel="stylesheet"/>
+    <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <link href="../css/iconfont.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+            //搜索框显示隐藏
+            $('.mui-icon-search').click(
+                function() {
+                    if($('#mui-search').is(":hidden")) {
+                        $('#mui-search').show();
+                    }else {
+                        $('#mui-search').hide();
+                    }
+                }
+            )
+        })
+        mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <!--<a class="mui-action-qy  mui-pull-left" id="showCityPicker3" href="javascript:void(0);">
+        <i class="iconfont icon-dizhi"></i>
+        <span id="mui-city">全国</span>
+    </a>-->
+    <h1 class="mui-title">销售服装代理</h1>
+    <!--<a class="mui-action-fx  mui-pull-right" id="showCityPicker3" href="javascript:void(0);"> 
+    	<i class="iconfont icon-fenxiang"></i> <span id="mui-share">分享</span> 
+    </a>-->
+</header>
+<div class="mui-content">
+    <div class="mui-input-row mui-search" id="mui-search" >
+        <input type="search" class="mui-input-clear" placeholder="搜索关键词">
+    </div>
+    <div class="yqts-info">
+        <h2 class="title">--我发布的代理信息--</h2>
+    </div>
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell mui-media" id="data_my">
+        </li>
+    </ul>
+    <div class="qhy-list">
+        <div class="qhy-num-all wrap">
+        	<span class="fl" id="text">
+        		当前有<font style="color:red;font-weight: bold;" id="count">0</font>个品牌招代理
+        	</span>
+        	<div class="clear"></div>
+        </div>
+        <ul class="mui-table-view mui-table-view1" id="others"></ul>
+    </div>
+</div>
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item mui-active" href="../index.html">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item" href="../extension.html">
+        <span class="mui-icon mui-icon-plusempty"></span>
+        <span class="mui-tab-label" style="padding-top:25px;">我要推广</span>
+    </a>
+    <a class="mui-tab-item" href="../user.html">
+        <span class="mui-icon mui-icon mui-icon-contact"></span>
+        <span class="mui-tab-label">我的</span>
+    </a>
+</nav>
+<input type="hidden" name="model" id="model">
+<input type="hidden" name="type" id="type">
+<input type="hidden" name="user" id="user">
+<input type="hidden" name="target[province]" />
+<input type="hidden" name="target[city]" />
+<input type="hidden" name="target[county]" />
+<script src="../js/mui.picker.js"></script>
+<script src="../js/mui.poppicker.js"></script>
+<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/config.js"></script>
+<script src="../js/otcms.js"></script>
+<script>
+	(function($, doc) {
+		$.init();
+		$.ready(function() {
+	        //级联示
+		});
+	})(mui, document);
+    $(function () {
+        var user_id = window.localStorage.getItem('user_id');
+        if(user_id == null){
+            window.location = '../login.html';
+            return false;
+        }
+        $('#user').val(user_id);
+        var operation = getParams();
+        $('#model').val(operation['model']);
+        $('#type').val(operation['type']);
+        
+        $('.mui-title').html(modelData[operation['model']]['title']);
+        
+        if(operation['type'] == 1){
+            $('.yqts-info .title').html('--我发布的放活信息--');
+        }else{
+            $('.yqts-info .title').html('--我发布的接活信息--');
+        }
+        eval('var user = ' + window.localStorage.getItem('user'));
+        var c_name = window.localStorage.getItem('county_name');
+        
+        if(c_name != '' && c_name != null){
+        	$('#mui-city').html(c_name);
+        }else {
+        	if(user.county_name != ''){
+	        	$('#mui-city').html(user.county_name);
+	        }
+        }
+        getData();
+    });
+    //获取数据
+    function getData() {
+    	eval('var user = ' + window.localStorage.getItem('user'));
+    	var province = '',city = '',county = '';
+    	var county = window.localStorage.getItem('city_name');
+    	if(county == ''){
+    		province = user.province;
+    		city = user.city;
+    		county = user.county;
+    	}else {
+    		province = window.localStorage.getItem('province_name');
+    		city = window.localStorage.getItem('city_name');
+    		county = '';
+    	}
+         var params = {
+             model : $('#model').val(),
+             type : $('#type').val(),
+             user : $('#user').val(),
+             province : province,
+             city : city,
+             county : county
+         };
+        $.post(host + '/work/index.html',params,function (data) {
+            dealData(data);
+        },'JSON');
+    }
+    function dealData(data) {
+        var data_my = data.data['my'],
+            count = data.count,
+            others = data.data.other;
+		var type = $('#type').val(),
+			model = $('#model').val();
+		var html = '';
+		if(data_my !== null){
+			if(data_my.thumb_images != ''){
+				var img_arr = data_my.thumb_images.split('|');
+			}else {
+				var img_arr = data_my.images.split('|');
+			}
+			var url = '';
+			if(data_my.type == 1){	//
+				url = 'add_' + data_my.model + '.html?id=' + data_my.id;
+			}else{
+				url = 'sale_' + data_my.model + '.html?id=' + data_my.id;
+			}
+			data_my.title = checkPhone(data_my.title);
+			data_my.intro = checkPhone(data_my.intro);
+			html = '<a href="'+url+'">\n' +
+            '                <div class="mui-title1">'+ data_my.title +'</div>\n' +
+            '                <div class="mui-media-body">\n' +
+            '                    <img class="mui-media-object mui-pull-left" width="100%" src="'+img_arr[0]+'">\n' +
+            '                    <p class="mui-desc">'+data_my.intro+'</p>\n' +
+            '                </div>\n' +
+            '                <div class="mui-date"><span><i class="mui-icon mui-icon-compose"></i>编辑</span><span class="fr"><i class="mui-icon mui-icon mui-icon-location"></i>'+data_my.address+'</span><div class="clear"></div></div>\n' +
+            '            </a>';
+		}
+         if(html == ''){
+         	var title = modelData[model].title;
+         	if(type == 1){
+         		html = '亲，你三天内都没有发布'+title+'信息了，快点发布吧！让客户尽快找到你！';
+         	}else {
+         		html = '亲，你三天内都没有发布寻找'+title+'信息了，快点发布吧！让客户尽快找到你！';
+         	}
+         }
+         $('#data_my').html(html);
+        var html = '';
+        for (var i=0;i<others.length;++i) {
+        	if(others[i].thumb_images != ''){
+				var image_arr = others[i].thumb_images.split('|');
+			}else {
+				var image_arr = others[i].images.split('|');
+			}
+            url = 'detail.html?id='+others[i].id + '&model='+others[i].model + '&type=' + others[i].type;
+            html += '<li class="mui-table-view-cell mui-media">\n' +
+                '                <a href="'+url+'">\n' +
+                '                    <div class="mui-title1">'+checkPhone(others[i].title)+'</div>\n' +
+                '                    <div class="mui-media-body">\n' +
+                '                        <img class="mui-media-object mui-pull-left" width="100%" src="'+image_arr[0]+'">\n' +
+                '                        <p class="mui-desc">'+checkPhone(others[i].intro)+'</p>\n' +
+                '                    </div>\n' +
+                '                    <div class="mui-date"><span class="fl">'+others[i].datetime+'</span><span class="fr"><i class="mui-icon mui-icon mui-icon-location"></i>'+others[i].address+'</span><div class="clear"></div></div>\n' +
+                '                </a>\n' +
+                '            </li>';
+        }
+        $('#others').html(html);
+        var type = $('#type').val();
+        var model = $('#model').val();
+        var content = config_list[model][type];
+        $('#text').html(content);
+        $('#count').html(count);
+    }
+    /**
+     * 跳转到编辑页面
+     */
+    function jump_edit(type,id) {
+    	window.location.href = 'add_' + type + '.html?id='+id;	
+    }
+    mui('body').on('tap','a',function(){
+	    window.top.location.href=this.href;
+	});
+</script>
+</body>
+</html>
