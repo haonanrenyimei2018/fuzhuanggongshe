@@ -119,7 +119,7 @@
     			$('#addrDiv').before(html);
     			phone = data.phone;
     			$('#callPhone').click(function (){
-    				plus.device.dial(phone,true );
+    				plus.device.dial(phone,false);
     			});
     			$(".js-smartPhoto").smartPhoto();
     		},'JSON');
