@@ -4,7 +4,7 @@ var host = 'http://fz.6me.cn/api';
 var upload_url = host + '/upload/index';
 var domain = 'http://fz.6me.cn/api/extension/index.html?pid=';
 //当前版本号
-var version_code = "1.1.5";
+var version_code = "1.1.6";
 var noticedata = [];
 var modelData = {
 	1 : {

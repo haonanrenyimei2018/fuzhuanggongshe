@@ -9,10 +9,6 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link href="../css/mui.picker.css" rel="stylesheet"/>
     <link href="../css/mui.poppicker.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../plugin/smartphoto/css/htmleaf-demo.css" />
-	<link rel="stylesheet" type="text/css" href="../plugin/smartphoto/css/htmleaf-demo.css">
-	<link rel="stylesheet" href="../plugin/smartphoto/css/smartphoto.css" />
-	<link rel="stylesheet" href="../plugin/smartphoto/css/style2.css" />
     <script type="text/javascript" charset="utf-8">
       	mui.init();
     </script>
@@ -53,7 +49,6 @@
     	</div>
     </div>
     <nav class="mui-bar mui-bar-tab mui-lx-tab">
-	    
 	    <a class="mui-tab-item" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" style="background:#3ea1f6; color:#fff;">
 	        <span class="mui-tab-label"><i class="mui-icon mui-icon-phone"></i>在线客服</span>
 	    </a>
@@ -72,7 +67,6 @@
     <script src="../layui/layui.js"></script>
 	<script src="../js/config.js"></script>
     <script src="../js/otcms.js"></script>
-    <script src="../plugin/smartphoto/js/jquery-smartphoto.min.js?v=1"></script>
     <script>
     	var phone = '';
     	$(function () {
@@ -108,20 +102,19 @@
 //  			}
     			var msg = '';
     			for(var i=0;i<thumb_images_arr.length;++i){
-    				msg += '<a href="'+thumb_images_arr[i]+'" class="js-smartPhoto" style="width:200px;height:300px;display:block;"><img src="'+thumb_images_arr[i]+'" width="100%" height="100%" style="margin-top:2px;display:block;" ></a>';
+    				msg += '<img src="'+thumb_images_arr[i]+'" width="80%" height="300px" style="margin-top:2px;display:block;" >';
     			}
     			$('#imagesDiv').html(msg);
     			$('#title').html(checkPhone(data.title));
     			$('#intro').html(checkPhone(data.intro));
     			$('#address').html(data.address);
     			$('#link').html(checkPhone(data.link));
-    			$('#phone').html('******');
+    			$('#phone').html('***********');
     			$('#addrDiv').before(html);
     			phone = data.phone;
     			$('#callPhone').click(function (){
     				plus.device.dial(phone,false);
     			});
-    			$(".js-smartPhoto").smartPhoto();
     		},'JSON');
     	}
     	mui('body').on('tap','a',function(){
