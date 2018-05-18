@@ -17,11 +17,12 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>com.aptana.projects.webnature</nature>
 		<nature>com.pandora.projects.ui.MKeyNature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1525675953127</id>
+			<id>1525792103780</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
