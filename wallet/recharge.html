@@ -29,6 +29,8 @@
 	<script src="../js/mui.poppicker.js"></script>
 	<script>
 		var payment = {};
+		var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=';
+		var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=';
 		mui.plusReady(function () {
 			plus.payment.getChannels( function(s){
 				for(var p in s){
@@ -52,6 +54,7 @@
 		}, false );
 		//微信支付
 		function wxpayEvent() {
+			plus.nativeUI.alert("支付成功！",function(){});
 			var statement = {
 				'productid' : 1,
 				'username' : '服装公社',

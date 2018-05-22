@@ -1,328 +1,328 @@
 {
-	"home.html": {
-		"refer": [
-			"login.html",
-			"index.html"
-		],
-		"resources": [
-			"index.html"
-		]
-	},
-	"login.html": {
-		"refer": [
-			"home.html",
-			"register.html",
-			"forget.html"
-		],
-		"resources": []
-	},
-	"index.html": {
-		"refer": [
-			"home.html",
-			"release.html",
-			"user.html",
-			"extension.html",
-			"release/list_1.html",
-			"release/detail.html"
-		],
-		"resources": [
-			"home.html"
-		]
-	},
-	"release.html": {
-		"refer": [
-			"release/sale_1.html",
-			"index.html",
-			"release/list_1.html",
-			"release/add_1.html",
-			"release/add_6.html",
-			"release/add_4.html",
-			"release/sale_4.html",
-			"release/add_5.html",
-			"release/add_3.html",
-			"release/sale_3.html",
-			"release/sale_6.html",
-			"release/add_7.html",
-			"release/sale_7.html",
-			"release/sale_10.html",
-			"release/add_10.html",
-			"release/sale_2.html",
-			"release/sale_11.html",
-			"release/sale_12.html",
-			"release/add_12.html",
-			"release/add_11.html",
-			"release/add_8.html",
-			"release/sale_9.html",
-			"release/add_9.html",
-			"release/sale_8.html",
-			"release/sale_5.html",
-			"release/add_2.html"
-		],
-		"resources": []
-	},
-	"release/sale_1.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"user.html": {
-		"resources": [
-			"unpackage/res/icons/48x48.png"
-		],
-		"refer": [
-			"index.html",
-			"login.html",
-			"extension.html",
-			"wallet/index.html",
-			"service.html",
-			"order.html",
-			"release/add_1.html",
-			"release/list_1.html",
-			"guarantee/index.html"
-		]
-	},
-	"main.html": {
-		"refer": [
-			"index.html",
-			"login.html"
-		],
-		"resources": []
-	},
-	"release/list_1.html": {
-		"resources": [
-			"release.html",
-			"css/iconfont.css",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"release.html",
-			"extension.html",
-			"release/add_1.html",
-			"index.html",
-			"user.html",
-			"release/sale_4.html",
-			"release/detail.html",
-			"release/sale_12.html",
-			"release/sale_11.html"
-		]
-	},
-	"release/add_1.html": {
-		"refer": [
-			"release.html",
-			"release/list_1.html",
-			"index.html",
-			"user.html"
-		],
-		"resources": []
-	},
-	"extension.html": {
-		"refer": [
-			"index.html",
-			"release/list_1.html",
-			"user.html"
-		],
-		"resources": []
-	},
-	"release/add_6.html": {
-		"refer": [
-			"release.html",
-			"index.html"
-		],
-		"resources": []
-	},
-	"release/add_4.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_4.html": {
-		"refer": [
-			"index.html",
-			"release.html",
-			"release/list_1.html"
-		],
-		"resources": []
-	},
-	"release/add_5.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"register.html": {
-		"refer": [
-			"login.html"
-		],
-		"resources": []
-	},
-	"release/detail.html": {
-		"refer": [
-			"index.html",
-			"release/list_1.html"
-		],
-		"resources": []
-	},
-	"wallet/index.html": {
-		"refer": [
-			"wallet/recharge.html",
-			"wallet/info.html",
-			"wallet/withdrawals.html",
-			"user.html"
-		],
-		"resources": []
-	},
-	"wallet/recharge.html": {
-		"refer": [
-			"wallet/index.html"
-		],
-		"resources": []
-	},
-	"wallet/withdrawals.html": {
-		"refer": [
-			"wallet/index.html"
-		],
-		"resources": []
-	},
-	"wallet/info.html": {
-		"refer": [
-			"wallet/index.html"
-		],
-		"resources": []
-	},
-	"service.html": {
-		"refer": [
-			"user.html"
-		],
-		"resources": []
-	},
-	"order.html": {
-		"refer": [
-			"user.html"
-		],
-		"resources": []
-	},
-	"release/add_3.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_3.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_6.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_7.html": {
-		"refer": [
-			"release.html",
-			"release/list_1.html"
-		],
-		"resources": []
-	},
-	"release/sale_10.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/add_10.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_2.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"forget.html": {
-		"refer": [
-			"login.html"
-		],
-		"resources": []
-	},
-	"release/sale_12.html": {
-		"refer": [
-			"release/list_1.html",
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/add_12.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_11.html": {
-		"refer": [
-			"release/list_1.html",
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/add_7.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/add_11.html": {
-		"refer": [
-			"release.html",
-			"index.html"
-		],
-		"resources": []
-	},
-	"release/add_8.html": {
-		"refer": [
-			"index.html",
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_9.html": {
-		"refer": [
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/add_9.html": {
-		"refer": [
-			"index.html",
-			"release.html"
-		],
-		"resources": []
-	},
-	"release/sale_8.html": {
-		"refer": [
-			"release.html"
-		]
-	},
-	"release/sale_5.html": {
-		"refer": [
-			"release.html"
-		]
-	},
-	"release/add_2.html": {
-		"refer": [
-			"release.html"
-		]
-	},
-	"guarantee/index.html": {
-		"refer": [
-			"user.html"
-		]
-	}
+  "home.html": {
+    "refer": [
+      "login.html",
+      "index.html"
+    ],
+    "resources": [
+      "index.html"
+    ]
+  },
+  "login.html": {
+    "refer": [
+      "home.html",
+      "register.html",
+      "forget.html"
+    ],
+    "resources": []
+  },
+  "index.html": {
+    "refer": [
+      "home.html",
+      "release.html",
+      "user.html",
+      "extension.html",
+      "release/list_1.html",
+      "release/detail.html"
+    ],
+    "resources": [
+      "home.html"
+    ]
+  },
+  "release.html": {
+    "refer": [
+      "release/sale_1.html",
+      "index.html",
+      "release/list_1.html",
+      "release/add_1.html",
+      "release/add_6.html",
+      "release/add_4.html",
+      "release/sale_4.html",
+      "release/add_5.html",
+      "release/add_3.html",
+      "release/sale_3.html",
+      "release/sale_6.html",
+      "release/add_7.html",
+      "release/sale_7.html",
+      "release/sale_10.html",
+      "release/add_10.html",
+      "release/sale_2.html",
+      "release/sale_11.html",
+      "release/sale_12.html",
+      "release/add_12.html",
+      "release/add_11.html",
+      "release/add_8.html",
+      "release/sale_9.html",
+      "release/add_9.html",
+      "release/sale_8.html",
+      "release/sale_5.html",
+      "release/add_2.html"
+    ],
+    "resources": []
+  },
+  "release/sale_1.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "user.html": {
+    "resources": [
+      "unpackage/res/icons/48x48.png"
+    ],
+    "refer": [
+      "index.html",
+      "login.html",
+      "extension.html",
+      "wallet/index.html",
+      "service.html",
+      "order.html",
+      "release/add_1.html",
+      "release/list_1.html",
+      "guarantee/index.html"
+    ]
+  },
+  "main.html": {
+    "refer": [
+      "index.html",
+      "login.html"
+    ],
+    "resources": []
+  },
+  "release/list_1.html": {
+    "resources": [
+      "release.html",
+      "css/iconfont.css",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "release.html",
+      "extension.html",
+      "release/add_1.html",
+      "index.html",
+      "user.html",
+      "release/sale_4.html",
+      "release/detail.html",
+      "release/sale_12.html",
+      "release/sale_11.html"
+    ]
+  },
+  "release/add_1.html": {
+    "refer": [
+      "release.html",
+      "release/list_1.html",
+      "index.html",
+      "user.html"
+    ],
+    "resources": []
+  },
+  "extension.html": {
+    "refer": [
+      "index.html",
+      "release/list_1.html",
+      "user.html"
+    ],
+    "resources": []
+  },
+  "release/add_6.html": {
+    "refer": [
+      "release.html",
+      "index.html"
+    ],
+    "resources": []
+  },
+  "release/add_4.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_4.html": {
+    "refer": [
+      "index.html",
+      "release.html",
+      "release/list_1.html"
+    ],
+    "resources": []
+  },
+  "release/add_5.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "register.html": {
+    "refer": [
+      "login.html"
+    ],
+    "resources": []
+  },
+  "release/detail.html": {
+    "refer": [
+      "index.html",
+      "release/list_1.html"
+    ],
+    "resources": []
+  },
+  "wallet/index.html": {
+    "refer": [
+      "wallet/recharge.html",
+      "wallet/info.html",
+      "wallet/withdrawals.html",
+      "user.html"
+    ],
+    "resources": []
+  },
+  "wallet/recharge.html": {
+    "refer": [
+      "wallet/index.html"
+    ],
+    "resources": []
+  },
+  "wallet/withdrawals.html": {
+    "refer": [
+      "wallet/index.html"
+    ],
+    "resources": []
+  },
+  "wallet/info.html": {
+    "refer": [
+      "wallet/index.html"
+    ],
+    "resources": []
+  },
+  "service.html": {
+    "refer": [
+      "user.html"
+    ],
+    "resources": []
+  },
+  "order.html": {
+    "refer": [
+      "user.html"
+    ],
+    "resources": []
+  },
+  "release/add_3.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_3.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_6.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_7.html": {
+    "refer": [
+      "release.html",
+      "release/list_1.html"
+    ],
+    "resources": []
+  },
+  "release/sale_10.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/add_10.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_2.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "forget.html": {
+    "refer": [
+      "login.html"
+    ],
+    "resources": []
+  },
+  "release/sale_12.html": {
+    "refer": [
+      "release/list_1.html",
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/add_12.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_11.html": {
+    "refer": [
+      "release/list_1.html",
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/add_7.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/add_11.html": {
+    "refer": [
+      "release.html",
+      "index.html"
+    ],
+    "resources": []
+  },
+  "release/add_8.html": {
+    "refer": [
+      "index.html",
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_9.html": {
+    "refer": [
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/add_9.html": {
+    "refer": [
+      "index.html",
+      "release.html"
+    ],
+    "resources": []
+  },
+  "release/sale_8.html": {
+    "refer": [
+      "release.html"
+    ]
+  },
+  "release/sale_5.html": {
+    "refer": [
+      "release.html"
+    ]
+  },
+  "release/add_2.html": {
+    "refer": [
+      "release.html"
+    ]
+  },
+  "guarantee/index.html": {
+    "refer": [
+      "user.html"
+    ]
+  }
 }

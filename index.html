@@ -32,7 +32,7 @@
 		});
 		var gallery = mui('.mui-slider');
 		gallery.slider({
-			interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+			interval : 3000//自动轮播周期，若为0则不自动播放，默认为0；
 		});
 	});
 	mui.init();
@@ -47,9 +47,9 @@
       </a> 
 	</header>
 	<div class="mui-content">
-		 <div class="mui-input-row mui-search" id="mui-search" >
-		    <input type="search" class="mui-input-clear" placeholder="搜索关键词">
-		  </div>
+		<div class="mui-input-row mui-search" id="mui-search" >
+			<input type="search" class="mui-input-clear" placeholder="搜索关键词">
+		</div>
       <ul class="mui-table-view mui-grid-view mui-grid-9 mui-home">
 	    <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"> 
 	    	<a href="release.html?model=1"> 
@@ -124,13 +124,13 @@
 	      	</a> 
 	    </li>
 	  </ul>
-      <div class="mui-slider" style="margin: 10px auto;">
+	<div class="mui-slider" style="margin: 10px auto;">
 		<div class="mui-slider-group">
-          <div class="mui-slider-item"><a href="#"><img width="98%" height="98%" src="images/banner.jpg" /></a></div>
-          <div class="mui-slider-item"><a href="#"><img width="98%" height="98%" src="images/banner1.jpg" /></a></div>
-        </div>
+			<div class="mui-slider-item"><a href="#"><img width="100%" height="100%" src="banner/banner.png" /></a></div>
+			<div class="mui-slider-item"><a href="#"><img width="100%" height="100%" src="banner/banner1.jpg" /></a></div>
+		</div>
 	</div>
-    <div style="padding-top: 10px; background: #fff;">
+    <div style="background: #fff;">
 	    <div id="segmentedControl" class="mui-segmented-control">
 			<a class="mui-control-item mui-active" href="#item1"> 热门信息 </a>
 			<a class="mui-control-item" href="#item2"> 最新信息 </a>
@@ -152,8 +152,8 @@
 		<div class="mui-scroll">
 			  <ul class="mui-table-view" id="items2">
 			  </ul>
-			  <div style="text-align:center; padding: 15px 0; display: none;">
-			<button type="button" class="mui-btn more" onclick="javascript:location.href='#'" >显示更多>></button>
+			  <div style="text-align:center; padding: 15px 0;">
+			<button type="button" class="mui-btn more" onclick="javascript:location.href='new.html'" >显示更多>></button>
 		  </div>
 			</div>
 	  </div>
@@ -169,7 +169,8 @@
 		<span class="mui-icon mui-icon-plusempty"></span> 
 		<span class="mui-tab-label" style="padding-top:25px;">我要推广</span> 
 	</a> 
-	<a class="mui-tab-item" href="user.html"> <span class="mui-icon mui-icon mui-icon-contact"></span> <span class="mui-tab-label">我的</span> </a> </nav>
+	<a class="mui-tab-item" href="user.html"> <span class="mui-icon mui-icon mui-icon-contact"></span> <span class="mui-tab-label">我的</span> </a> 
+</nav>
 
 <div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
     <!-- 可选择菜单 -->
@@ -216,8 +217,6 @@
 	(function($, doc) {
 		$.init();
 		$.ready(function() {
-			//-----------------------------------------
-			// 					级联示例
 	        //级联示例
 	        var cityPicker3 = new $.PopPicker({
 	            layer: 2
@@ -423,9 +422,6 @@
 			}
 		},'JSON');
 	}
-	
-	
-	
 	
 	mui('body').on('tap','a',function(){
 	    window.top.location.href=this.href;

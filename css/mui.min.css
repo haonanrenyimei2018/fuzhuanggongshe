@@ -2908,7 +2908,7 @@ transform:translate3d(100%, 0, 0) scaleX(.5)
 	z-index: 1;
 	overflow: hidden;
 	width: 100%;
-	max-height:100px;
+	max-height:200px;
 }
 .mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
 	border-bottom: 0
